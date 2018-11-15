@@ -4,10 +4,13 @@ import './SideBar.css'
 import Sidebar from "react-sidebar";
 
 import * as Icons from "@fortawesome/free-solid-svg-icons"
-import Contain from '../Contain/Contain'
+import ProductTable from '../ProductTable/ProductTable'
 
 
 const mql = window.matchMedia(`(min-width: 800px)`);
+
+
+
 class SideBar extends Component {
     constructor(props) {
         super(props);
@@ -59,7 +62,10 @@ class SideBar extends Component {
                 <button className='Button' onClick={() => this.mediaQueryChanged(this.state.sidebarDocked)} >
                     Switch sidebar
             </button>
-                <Contain></Contain>
+
+                <ProductTable products={this.props.products}/>
+
+
 
             </Sidebar>
         );
