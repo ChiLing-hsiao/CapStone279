@@ -6,8 +6,13 @@ import SearchBar from '../SearchBar/SearchBar'
 import * as Icons from "@fortawesome/free-solid-svg-icons"
 import Contain from '../Contain/Contain'
 import Detailed from '../Detailed/Detailed'
+import ProductTable from '../ProductTable/ProductTable'
+
 
 const mql = window.matchMedia(`(min-width: 800px)`);
+
+
+
 class SideBar extends Component {
     constructor(props) {
         super(props);
@@ -61,6 +66,10 @@ class SideBar extends Component {
 
                 <SearchBar clicked={() => this.mediaQueryChanged(this.state.sidebarDocked)}></SearchBar>
                 <Detailed></Detailed>
+
+                <ProductTable products={this.props.products}/>
+
+
 
             </Sidebar>
         );
