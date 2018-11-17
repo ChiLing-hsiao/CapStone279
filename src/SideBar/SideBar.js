@@ -2,23 +2,23 @@ import React, { Component } from 'react';
 import './SideBar.css'
 
 import Sidebar from "react-sidebar";
-
+import SearchBar from '../SearchBar/SearchBar'
 import * as Icons from "@fortawesome/free-solid-svg-icons"
 import Contain from '../Contain/Contain'
-
+import Detailed from '../Detailed/Detailed'
 
 const mql = window.matchMedia(`(min-width: 800px)`);
 class SideBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          sidebarDocked: false,
-          sidebarOpen: false
+            sidebarDocked: false,
+            sidebarOpen: false
         };
-    
+
         this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
         this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
-      }
+    }
 
     onSetSidebarOpen(open) {
         this.setState({ sidebarOpen: open });
@@ -41,14 +41,17 @@ class SideBar extends Component {
         return (
             <Sidebar
                 sidebar={
-                    <ul className='sidebar'>
-                        <li href="#about">MAKEUP</li >
-                        <li href="#services">SKINCARE</li>
-                        <li href="#clients">FRANGRANCE</li>
-                        <li href="#contact">HAIR</li>
-                        <li href="#">BATH BODY</li>
-                        <li href="">MEN</li>
-                    </ul>}
+                    <div className='sideBack'>
+                        <div className='bar'> </div>
+                        <ul className='sidebar'>
+                            <a href="#about">MAKEUP</a >
+                            <a href="#services">SKINCARE</a>
+                            <a href="#clients">FRANGRANCE</a>
+                            <a href="#contact">HAIR</a>
+                            <a href="#">BATH BODY</a>
+                            <a href="">MEN</a>
+                        </ul>
+                    </div>}
                 overlayClassName="overlay"
                 open={this.state.sidebarOpen}
                 docked={this.state.sidebarDocked}
@@ -56,10 +59,8 @@ class SideBar extends Component {
                 styles={{ overlay: { marginTop: "53px", } }}
             >
 
-                <button className='Button' onClick={() => this.mediaQueryChanged(this.state.sidebarDocked)} >
-                    Switch sidebar
-            </button>
-                <Contain></Contain>
+                <SearchBar clicked={() => this.mediaQueryChanged(this.state.sidebarDocked)}></SearchBar>
+                <Detailed></Detailed>
 
             </Sidebar>
         );

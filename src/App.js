@@ -12,9 +12,7 @@ class App extends React.Component {
     return (
       <div>
         
-        <SideBar></SideBar>
-      <SearchBar></SearchBar>
-      
+      <SideBar></SideBar>     
       
       </div>
     );
