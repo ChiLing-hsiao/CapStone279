@@ -49,7 +49,7 @@ export default class ProductCategoryRow extends Component{
         return(
             <Col sm="6" lg="4">
                 <Card body style={{ borderColor: 'white' }} className="text-center">
-                    <CardImg style={{ height: '120px', width: '120px' }} src={this.props.product.url} />
+                    <CardImg className="img-fluid d-block mx-auto" style={{ height: '120px', width: '120px' }} src={this.props.product.url} />
                     <CardBody>
                         <CardTitle style={{ fontSize: '14px' }} className='project__cardTitle'>{this.props.product.category}</CardTitle>
                         <CardSubtitle style={{ height: '45px', fontSize: '10px' }}>
