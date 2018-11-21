@@ -1,4 +1,8 @@
-import React,{Component} from 'react';//引入react
+import React, {Component} from 'react';//引入react
+
+
+import { Link } from 'react-router-dom';
+
 import {
     Container,
     Row,
@@ -17,12 +21,10 @@ import {
     Thumbnail
 } from 'reactstrap';
 
-export default class ProductCategoryRow extends Component{
-    constructor(props){
+export default class ProductCategoryRow extends Component {
+    constructor(props) {
         super(props);
-        this.state={
-
-        }
+        this.state = {}
     }
 
     /**
@@ -45,24 +47,28 @@ export default class ProductCategoryRow extends Component{
      </Col>
      * @returns {*}
      */
-    render(){
-        return(
+    render() {
+        return (
             <Col sm="6" lg="4">
-                <Card body style={{ borderColor: 'white' }} className="text-center">
-                    <CardImg className="img-fluid d-block mx-auto" style={{ height: '120px', width: '120px' }} src={this.props.product.url} />
-                    <CardBody>
-                        <CardTitle style={{ fontSize: '14px' }} className='project__cardTitle'>{this.props.product.category}</CardTitle>
-                        <CardSubtitle style={{ height: '45px', fontSize: '10px' }}>
-                            {this.props.product.name}
-                        </CardSubtitle>
-                        <CardText style={{ height: '3px',  fontSize: '10px' }}>
-                            {this.props.product.price}
-                        </CardText>
-                        <CardText style={{ height: '5px' ,  fontSize: '10px'}}>
-                            {this.props.product.star}
-                        </CardText>
-                    </CardBody>
-                </Card>
+                <Link to="/detail">
+                    <Card body style={{borderColor: 'white'}} className="text-center">
+                        <CardImg className="img-fluid d-block mx-auto" style={{height: '120px', width: '120px'}}
+                                 src={this.props.product.url}/>
+                        <CardBody>
+                            <CardTitle style={{fontSize: '14px'}}
+                                       className='project__cardTitle'>{this.props.product.category}</CardTitle>
+                            <CardSubtitle style={{height: '45px', fontSize: '10px'}}>
+                                {this.props.product.name}
+                            </CardSubtitle>
+                            <CardText style={{height: '3px', fontSize: '10px'}}>
+                                {this.props.product.price}
+                            </CardText>
+                            <CardText style={{height: '5px', fontSize: '10px'}}>
+                                {this.props.product.star}
+                            </CardText>
+                        </CardBody>
+                    </Card>
+                </Link>
             </Col>
             // <tr><th colSpan="2">{this.props.category}</th></tr>
         )
