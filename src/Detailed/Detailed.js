@@ -1,13 +1,50 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Container, Card, CardImg, CardTitle, CardSubtitle, CardText, CardBody, Row, Col} from 'reactstrap';
 import Tab from '../Tab/Tab'
 import './Detailed.css'
 
 class Detailed extends Component {
+    state = {
+        product: []
+    };
+
+    componentDidMount(){
+        axios
+            .get( 'https://jsonplaceholder.typicode.com/posts' )
+            .then(response => {
+                const product = response.data.slice(0,1);
+                const updatedProduct = product.map(post => {
+                    return {
+                        ...post,
+                        author: 'Bicheng'
+                    }
+                });
+                this.setState({product: updatedProduct});
+                console.log(updatedProduct);
+            });
+    }
+
+
+
     render() {
+        const product = this.state.product.map(post => {
+            return <div>
+                <h1>
+                    {post.id}
+                </h1>
+                <h1>
+                    {post.title}
+                </h1>
+            </div>
+        });
+
         return (
             <div>
+                <h1>
+                    {product}
+                </h1>
                 <Card>
                     <Container>
                         <Container fluid>

@@ -12,7 +12,6 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 const mql = window.matchMedia(`(min-width: 800px)`);
 
-
 class SideBar extends Component {
     constructor(props) {
         super(props);
@@ -64,15 +63,10 @@ class SideBar extends Component {
                         docked={this.state.sidebarDocked}
                         onSetOpen={this.onSetSidebarOpen}
                         styles={{overlay: {marginTop: "53px",}}}
-
                     >
-
                         <SearchBar clicked={() => this.mediaQueryChanged(this.state.sidebarDocked)}></SearchBar>
-
-
                         <Route exact path="/" component={ProductTable}/>
-                        <Route path="/detail" component={Detailed}/>
-
+                        <Route exact path="/detail" component={Detailed}/>
                     </Sidebar>
                 </Router>
             </div>
