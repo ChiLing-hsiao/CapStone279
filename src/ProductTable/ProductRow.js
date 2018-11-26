@@ -1,6 +1,5 @@
 import React,{Component} from 'react';//引入react
 
-//创建列表组件
 export default class ProductRow extends Component{
     constructor(props){
         super(props);

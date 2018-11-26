@@ -24,102 +24,78 @@ import ProductRow from "./ProductRow";
 
 const PRODUCTS = [
     {
-        category: 'Sporting Goods1',
-        price: '$49.99',
-        star: "4/5",
-        stocked: true,
-        name: 'Football',
-        url: 'https://www.sephora.com//productimages/sku/s2137230-main-grid.jpg'
-    },
-    {
-        category: 'Sporting Goods2',
-        price: '$9.99',
-        star: "4/5",
-        stocked: true,
-        name: 'Baseball',
-        url: 'https://www.sephora.com//productimages/sku/s2137230-main-grid.jpg'
-    },
-    {
-        category: 'Sporting Goods3',
-        price: '$29.99',
-        star: "5/5",
-        stocked: false,
-        name: 'Basketball',
-        url: 'https://www.sephora.com//productimages/sku/s2137230-main-grid.jpg'
-    },
-    {
-        category: 'Electronics1',
-        price: '$99.99',
-        star: "3/5",
-        stocked: true,
-        name: 'iPod Touch',
-        url: 'https://www.sephora.com//productimages/sku/s2137230-main-grid.jpg'
-    },
-    {
-        category: 'Electronics2',
-        price: '$399.99',
-        star: "3/5",
-        stocked: false,
-        name: 'iPhone 5',
-        url: 'https://www.sephora.com//productimages/sku/s2137230-main-grid.jpg'
-    },
-    {
-        category: 'Electronics3',
-        price: '$199.99',
-        star: "5/5",
-        stocked: true,
-        name: 'Nexus 7',
-        url: 'https://www.sephora.com//productimages/sku/s2137230-main-grid.jpg'
-    },
-    {
-        category: 'Electronics1',
-        price: '$99.99',
-        star: "3/5",
-        stocked: true,
-        name: 'iPod Touch1',
-        url: 'https://www.sephora.com//productimages/sku/s2137230-main-grid.jpg'
-    },
-    {
-        category: 'Electronics2',
-        price: '$399.99',
-        star: "3/5",
-        stocked: false,
-        name: 'iPhone 51',
-        url: 'https://www.sephora.com//productimages/sku/s2137230-main-grid.jpg'
-    },
-    {
-        category: 'Electronics3',
-        price: '$199.99',
-        star: "5/5",
-        stocked: true,
-        name: 'Nexus 71',
-        url: 'https://www.sephora.com//productimages/sku/s2137230-main-grid.jpg'
-    },
-    {
-        category: 'Electronics1',
-        price: '$99.99',
-        star: "3/5",
-        stocked: true,
-        name: 'iPod Touch2',
-        url: 'https://www.sephora.com//productimages/sku/s2137230-main-grid.jpg'
-    },
-    {
-        category: 'Electronics2',
-        price: '$399.99',
-        star: "3/5",
-        stocked: false,
-        name: 'iPhone 52',
-        url: 'https://www.sephora.com//productimages/sku/s2137230-main-grid.jpg'
-    },
-    {
-        category: 'Electronics3',
-        price: '$199.99',
-        star: "5/5",
-        stocked: true,
-        name: 'Nexus 72',
-        url: 'https://www.sephora.com//productimages/sku/s2137230-main-grid.jpg'
+        uid: "1",
+        name: "1The Luminous Lifting Cushion Foundation SPF 20",
+        price: "$120.00",
+        product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
+        figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+        brand: "La Mer",
+        review_score: "0"
+    },{
+        uid: "2",
+        name: "The Luminous Lifting Cushion Foundation SPF 20",
+        price: "$120.00",
+        product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
+        figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+        brand: "La Mer",
+        review_score: "0"
+    },{
+        uid: "3",
+        name: "3The Luminous Lifting Cushion Foundation SPF 20",
+        price: "$120.00",
+        product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
+        figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+        brand: "La Mer",
+        review_score: "0"
+    },{
+        uid: "4",
+        name: "4The Luminous Lifting Cushion Foundation SPF 20",
+        price: "$120.00",
+        product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
+        figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+        brand: "La Mer",
+        review_score: "0"
+    },{
+        uid: "5",
+        name: "5The Luminous Lifting Cushion Foundation SPF 20",
+        price: "$120.00",
+        product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
+        figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+        brand: "La Mer",
+        review_score: "0"
+    },{
+        uid: "6",
+        name: "6The Luminous Lifting Cushion Foundation SPF 20",
+        price: "$120.00",
+        product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
+        figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+        brand: "La Mer",
+        review_score: "0"
+    },{
+        uid: "7",
+        name: "7The Luminous Lifting Cushion Foundation SPF 20",
+        price: "$120.00",
+        product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
+        figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+        brand: "La Mer",
+        review_score: "0"
+    },{
+        uid: "8",
+        name: "8The Luminous Lifting Cushion Foundation SPF 20",
+        price: "$120.00",
+        product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
+        figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+        brand: "La Mer",
+        review_score: "0"
+    },{
+        uid: "9",
+        name: "9The Luminous Lifting Cushion Foundation SPF 20",
+        price: "$120.00",
+        product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
+        figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+        brand: "La Mer",
+        review_score: "0"
     }
-
 ];
 
 class ProductTable extends Component {
@@ -129,20 +105,18 @@ class ProductTable extends Component {
     };
 
     componentDidMount() {
-
-        axios.get('https://jsonplaceholder.typicode.com/posts')
-            .then(response => {
-                const posts = response.data.slice(0, 4);
-                const updatedPosts = posts.map(post => {
-                    return {
-                        ...post,
-                        author: 'Max'
-                    }
-                });
-                this.setState({posts: updatedPosts});
-                console.log(updatedPosts);
-            });
-        this.state.products = PRODUCTS.slice(0, 3);
+        // axios.get('https://jsonplaceholder.typicode.com/posts')
+        //     .then(response => {
+        //         const products = response.data.slice(0, 9).map(product => {
+        //             return {
+        //                 ...product,
+        //                 author: 'Bicheng'
+        //             }
+        //         });
+        //         this.setState({products: products});
+        //     });
+        this.setState({products: PRODUCTS});
+        // this.state.products =
     }
 
     render() {
@@ -153,9 +127,9 @@ class ProductTable extends Component {
         products.forEach((product) => {
             cnt = cnt + 1;
             if ((cnt % 4) === 0) {
-                rows.push(<ProductCategoryRow product={product} key={product.name}/>);
+                rows.push(<ProductCategoryRow product={product} key={product.uid}/>);
             } else {
-                rows.push(<ProductCategoryRow product={product} key={product.name}/>);
+                rows.push(<ProductCategoryRow product={product} key={product.uid}/>);
             }
         });
 

@@ -66,7 +66,7 @@ class SideBar extends Component {
                     >
                         <SearchBar clicked={() => this.mediaQueryChanged(this.state.sidebarDocked)}></SearchBar>
                         <Route exact path="/" component={ProductTable}/>
-                        <Route exact path="/detail" component={Detailed}/>
+                        <Route exact path="/detail/:id" component={Detailed} />
                     </Sidebar>
                 </Router>
             </div>
