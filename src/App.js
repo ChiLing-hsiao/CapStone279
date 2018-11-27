@@ -9,11 +9,9 @@ import ReactDOM from 'react-dom';
 class App extends Component {
     render() {
         return (
-
             <div>
                 <SideBar/>
             </div>
-
         );
     }
 }
