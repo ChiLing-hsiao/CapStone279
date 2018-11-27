@@ -24,7 +24,7 @@ import ProductRow from "./ProductRow";
 
 const PRODUCTS = [
     {
-        uid: "1",
+        id: "1",
         name: "1The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
         product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
@@ -32,7 +32,7 @@ const PRODUCTS = [
         brand: "La Mer",
         review_score: "0"
     },{
-        uid: "2",
+        id: "2",
         name: "The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
         product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
@@ -40,7 +40,7 @@ const PRODUCTS = [
         brand: "La Mer",
         review_score: "0"
     },{
-        uid: "3",
+        id: "3",
         name: "3The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
         product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
@@ -48,7 +48,7 @@ const PRODUCTS = [
         brand: "La Mer",
         review_score: "0"
     },{
-        uid: "4",
+        id: "4",
         name: "4The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
         product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
@@ -56,7 +56,7 @@ const PRODUCTS = [
         brand: "La Mer",
         review_score: "0"
     },{
-        uid: "5",
+        id: "5",
         name: "5The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
         product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
@@ -64,7 +64,7 @@ const PRODUCTS = [
         brand: "La Mer",
         review_score: "0"
     },{
-        uid: "6",
+        id: "6",
         name: "6The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
         product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
@@ -72,7 +72,7 @@ const PRODUCTS = [
         brand: "La Mer",
         review_score: "0"
     },{
-        uid: "7",
+        id: "7",
         name: "7The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
         product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
@@ -80,7 +80,7 @@ const PRODUCTS = [
         brand: "La Mer",
         review_score: "0"
     },{
-        uid: "8",
+        id: "8",
         name: "8The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
         product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
@@ -88,7 +88,7 @@ const PRODUCTS = [
         brand: "La Mer",
         review_score: "0"
     },{
-        uid: "9",
+        id: "9",
         name: "9The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
         product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
@@ -105,17 +105,17 @@ class ProductTable extends Component {
     };
 
     componentDidMount() {
-        // axios.get('https://jsonplaceholder.typicode.com/posts')
-        //     .then(response => {
-        //         const products = response.data.slice(0, 9).map(product => {
-        //             return {
-        //                 ...product,
-        //                 author: 'Bicheng'
-        //             }
-        //         });
-        //         this.setState({products: products});
-        //     });
-        this.setState({products: PRODUCTS});
+        axios.get('http://localhost:3004/Product')
+            .then(response => {
+                const products = response.data.slice(0, 3).map(product => {
+                    return {
+                        ...product,
+                        author: 'Bicheng'
+                    }
+                });
+                this.setState({products: products});
+            });
+        // this.setState({products: PRODUCTS});
         // this.state.products =
     }
 
@@ -127,9 +127,9 @@ class ProductTable extends Component {
         products.forEach((product) => {
             cnt = cnt + 1;
             if ((cnt % 4) === 0) {
-                rows.push(<ProductCategoryRow product={product} key={product.uid}/>);
+                rows.push(<ProductCategoryRow product={product} key={product.id}/>);
             } else {
-                rows.push(<ProductCategoryRow product={product} key={product.uid}/>);
+                rows.push(<ProductCategoryRow product={product} key={product.id}/>);
             }
         });
 

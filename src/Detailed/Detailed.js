@@ -13,22 +13,22 @@ class Detailed extends Component {
 
     componentDidMount() {
         if (this.props.match.params.id) {
-            if (!this.state.loadedProduct || (this.state.loadedProduct && this.state.loadedProduct.uid != this.props.match.params.id)) {
-                // axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.match.params.id)
-                //     .then(response => {
-                //         // this.setState({loadedProduct: response.data});
-                //         console.log(this.props.match.params.id);
-                //     });
-                const PRODUCT = {
-                    uid: "1",
-                    name: "1The Luminous Lifting Cushion Foundation SPF 20",
-                    price: "$120.00",
-                    product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
-                    figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
-                    brand: "La Mer",
-                    review_score: "0"
-                };
-                this.setState({loadedProduct: PRODUCT});
+            if (!this.state.loadedProduct || (this.state.loadedProduct && this.state.loadedProduct.id != this.props.match.params.id)) {
+                axios.get('http://localhost:3004/Detail/' + this.props.match.params.id)
+                    .then(response => {
+                        this.setState({loadedProduct: response.data});
+                        console.log(this.props.match.params.id);
+                    });
+                // const PRODUCT = {
+                //     id: "1",
+                //     name: "1The Luminous Lifting Cushion Foundation SPF 20",
+                //     price: "$120.00",
+                //     product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
+                //     figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+                //     brand: "La Mer",
+                //     review_score: "0"
+                // };
+                // this.setState({loadedProduct: PRODUCT});
             }
         }
 

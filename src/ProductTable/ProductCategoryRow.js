@@ -30,7 +30,7 @@ export default class ProductCategoryRow extends Component {
     render() {
         return (
             <Col sm="6" lg="4">
-                <Link to={{ pathname: '/detail/' + this.props.product.uid }}>
+                <Link to={{ pathname: '/detail/' + this.props.product.id }}>
                     <Card body style={{borderColor: 'white'}} className="text-center">
                         <CardImg className="img-fluid d-block mx-auto" style={{height: '120px', width: '120px'}}
                                  src={this.props.product.figure_URL}/>

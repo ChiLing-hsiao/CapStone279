@@ -1,0 +1,61 @@
+{
+    "Product": [
+        {
+            "id": 1,
+            "name": "The Luminous Lifting Cushion Foundation SPF 20",
+            "price": "$120.00",
+            "product_URL": "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
+            "figure_URL": "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+            "brand": "La Mer",
+            "review_score": "0"
+        },
+        {
+            "id": 2,
+            "name": "Ultimate Coverage 24-Hour Foundation",
+            "price": "$44.00",
+            "product_URL": "https://www.bloomingdales.com/shop/product/becca-cosmetics-ultimate-coverage-24-hour-foundation?ID=3159205&CategoryID=2921",
+            "figure_URL": "https://images.bloomingdalesassets.com/is/image/BLM/products/7/optimized/10094117_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+            "brand": "Becca Cosmetics",
+            "review_score": "0"
+        },
+        {
+            "id": 3,
+            "name": "Radiant Cushion Foundation",
+            "price": "$90.00",
+            "product_URL": "https://www.bloomingdales.com/shop/product/cle-de-peau-beaute-radiant-cushion-foundation?ID=3078987&CategoryID=2921",
+            "figure_URL": "https://images.bloomingdalesassets.com/is/image/BLM/products/1/optimized/10025371_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+            "brand": "Clde Peau Beaut",
+            "review_score": "0"
+        }
+    ],
+    "Detail":[
+        {
+            "id": 1,
+            "name": "The Luminous Lifting Cushion Foundation SPF 20",
+            "price": "$120.00",
+            "product_URL": "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
+            "figure_URL": "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+            "brand": "La Mer",
+            "review_score": "0"
+        },
+        {
+            "id": 2,
+            "name": "Ultimate Coverage 24-Hour Foundation",
+            "price": "$44.00",
+            "product_URL": "https://www.bloomingdales.com/shop/product/becca-cosmetics-ultimate-coverage-24-hour-foundation?ID=3159205&CategoryID=2921",
+            "figure_URL": "https://images.bloomingdalesassets.com/is/image/BLM/products/7/optimized/10094117_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+            "brand": "Becca Cosmetics",
+            "review_score": "0"
+        },
+        {
+            "id": 3,
+            "name": "Radiant Cushion Foundation",
+            "price": "$90.00",
+            "product_URL": "https://www.bloomingdales.com/shop/product/cle-de-peau-beaute-radiant-cushion-foundation?ID=3078987&CategoryID=2921",
+            "figure_URL": "https://images.bloomingdalesassets.com/is/image/BLM/products/1/optimized/10025371_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
+            "brand": "Clde Peau Beaut",
+            "review_score": "0"
+        }
+    ]
+
+  }
