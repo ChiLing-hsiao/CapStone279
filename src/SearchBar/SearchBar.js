@@ -12,11 +12,11 @@ class SearchBar extends Component {
 
     state = {
         searchKey: ""
-    }
+    };
 
     postSearchHandler = () => {
         const data = {
-            searchKey: this.state.searchKey
+            KEY: this.state.searchKey
         };
         axios.post('https://jsonplaceholder.typicode.com/posts', data)
             .then(response => {

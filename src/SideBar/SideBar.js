@@ -13,13 +13,17 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 const mql = window.matchMedia(`(min-width: 800px)`);
 
 class SideBar extends Component {
+
+    state = {
+        searchKey: ""
+    };
+
     constructor(props) {
         super(props);
         this.state = {
             sidebarDocked: false,
             sidebarOpen: false
         };
-
         this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
         this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
     }
@@ -64,7 +68,7 @@ class SideBar extends Component {
                         onSetOpen={this.onSetSidebarOpen}
                         styles={{overlay: {marginTop: "53px",}}}
                     >
-                        <SearchBar clicked={() => this.mediaQueryChanged(this.state.sidebarDocked)}></SearchBar>
+                        <SearchBar clicked={() => this.mediaQueryChanged(this.state.sidebarDocked)}/>
                         <Route exact path="/" component={ProductTable}/>
                         <Route exact path="/detail/:id" component={Detailed} />
                     </Sidebar>

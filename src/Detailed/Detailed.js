@@ -19,16 +19,6 @@ class Detailed extends Component {
                         this.setState({loadedProduct: response.data});
                         console.log(this.props.match.params.id);
                     });
-                // const PRODUCT = {
-                //     id: "1",
-                //     name: "1The Luminous Lifting Cushion Foundation SPF 20",
-                //     price: "$120.00",
-                //     product_URL: "https://www.bloomingdales.com/shop/product/la-mer-the-luminous-lifting-cushion-foundation-spf-20?ID=3144067&CategoryID=2921",
-                //     figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
-                //     brand: "La Mer",
-                //     review_score: "0"
-                // };
-                // this.setState({loadedProduct: PRODUCT});
             }
         }
 
@@ -43,7 +33,6 @@ class Detailed extends Component {
             post = (
                 <div>
                     <Card>
-
                         <Container fluid>
                             <Row className='wrapper'>
                                 <Col className="preview" md='6'>

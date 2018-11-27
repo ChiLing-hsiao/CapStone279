@@ -101,13 +101,14 @@ const PRODUCTS = [
 class ProductTable extends Component {
 
     state = {
-        products: []
+        products: [],
+        keyword: ""
     };
 
     componentDidMount() {
         axios.get('http://localhost:3004/Product')
             .then(response => {
-                const products = response.data.slice(0, 3).map(product => {
+                const products = response.data.slice(0, 9).map(product => {
                     return {
                         ...product,
                         author: 'Bicheng'
@@ -115,8 +116,18 @@ class ProductTable extends Component {
                 });
                 this.setState({products: products});
             });
-        // this.setState({products: PRODUCTS});
-        // this.state.products =
+    }
+
+    componentDidUpdate() {
+        if (this.props.id) {
+            if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {
+                axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
+                    .then(response => {
+                        // console.log(response);
+                        this.setState({loadedPost: response.data});
+                    });
+            }
+        }
     }
 
     render() {
