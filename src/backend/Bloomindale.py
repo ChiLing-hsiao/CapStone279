@@ -23,6 +23,9 @@ def getProductInfo(keyword):
             picture_url = source['data-srcset']
         else: 
             picture_url = source['srcset']
+
+        if product.find('span', class_ = 'regular') == None: continue
+        
         price = product.find('span', class_ = 'regular').text.strip(' \t\n')
         # score = product.find('div', class_ = 'b-pdp-rating').find('div')['style']
 
@@ -37,12 +40,12 @@ def getProductInfo(keyword):
         
         product = Struct.Product(brand, name, price, product_url, picture_url, "0");
         L.append(product);
-        # print (product_url)
-        #print (picture_url)
-        #print (price)
+        print (product_url)
+        print (picture_url)
+        print (price)
         # print (score)
-        #print (brand)
-        #print (name)
+        print (brand)
+        print (name)
 
     return L    
 
@@ -72,5 +75,6 @@ def getProductReview(url):
 
     driver.close()
 
-#getProductInfo('foundation')
-# getProductReview('https://www.bloomingdales.com/shop/product/estee-lauder-double-wear-stay-in-place-liquid-makeup?ID=668196&CategoryID=2921')
+if __name__ == "__main__":
+    getProductInfo('clinique')
+    # getProductReview('https://www.bloomingdales.com/shop/product/estee-lauder-double-wear-stay-in-place-liquid-makeup?ID=668196&CategoryID=2921')

@@ -114,15 +114,15 @@ class ProductTable extends Component {
         this.updateProduct();
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         if (this.props.match.params && this.props.match.params.tmpKey) {
-            if(this.state.keyword != this.props.match.params.tmpKey){
+            if (this.state.keyword != this.props.match.params.tmpKey) {
                 this.updateProduct();
             }
         }
     }
 
-    updateProduct(){
+    updateProduct() {
         let data = {KEY: "foundation"};
         if (this.props.match.params && this.props.match.params.tmpKey) {
             data.KEY = this.props.match.params.tmpKey;
@@ -133,7 +133,7 @@ class ProductTable extends Component {
         params.append("KEY", data.KEY);
         axios.post('http://localhost:5000/', params)
             .then(response => {
-                console.log(products);
+                console.log(response);
                 const products = response.data["Product"].slice(0, 9).map(product => {
                     return {
                         ...product,
