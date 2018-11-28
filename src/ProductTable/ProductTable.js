@@ -119,6 +119,7 @@ class ProductTable extends Component {
                             author: 'Bicheng'
                         }
                     });
+                    console.log(products);
                     this.setState({products: products});
                 });
         }else{
@@ -126,12 +127,13 @@ class ProductTable extends Component {
             alert(data.KEY);
             axios.post("http://127.0.0.1:5000/", data)
                 .then(response => {
-                    const products = response.data.slice(0, 9).map(product => {
+                    const products = response.data["Product"].slice(0, 9).map(product => {
                         return {
                             ...product,
                             author: 'Bicheng'
                         }
                     });
+                    console.log(products);
                     this.setState({products: products});
                 });
         }

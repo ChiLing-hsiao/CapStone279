@@ -24,7 +24,7 @@ class SearchBar extends Component {
                     <input type="text" placeholder="Search.." className="search"
                            onChange={(event) => this.props.transferSearchKey(event.target.value)}
                     />
-                    <Link to="/Search"><FontAwesomeIcon icon={Icons.faSearchPlus} size="2x"/></Link>
+                    <Link to="/search"><FontAwesomeIcon icon={Icons.faSearchPlus} size="2x"/></Link>
                 </div>
             </Navbar>
         );

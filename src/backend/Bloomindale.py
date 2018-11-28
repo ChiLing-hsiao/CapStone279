@@ -52,7 +52,7 @@ def getProductReview(url):
     # options.add_argument('--disable-gpu')
     options.add_argument('user-agent=Mozilla/5.0')
 
-    driver = webdriver.Chrome(options=options, executable_path='C:/Users/Ray/Desktop/scracp/chromedriver_win32/chromedriver')
+    driver = webdriver.Chrome(options=options, executable_path='./chromedriver')
     driver.get(url)               
     driver.execute_script("window.scrollBy(0, (document.body.scrollHeight*0.6));")
 

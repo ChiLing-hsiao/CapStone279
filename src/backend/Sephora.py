@@ -83,7 +83,7 @@ def getProductInfo(keyword):
     searchUrl = 'https://www.sephora.com/search?keyword=' + keyword
 
     # Init driver
-    driver = webdriver.Chrome(executable_path='C:/Users/Ray/Desktop/scracp/chromedriver_win32/chromedriver')
+    driver = webdriver.Chrome(executable_path='./chromedriver')
     driver.get(searchUrl);
     time.sleep(0.5)   # Delays for 0.5 seconds.
 

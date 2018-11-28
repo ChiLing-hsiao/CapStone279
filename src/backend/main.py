@@ -19,16 +19,16 @@ def API2(L, key):
     L.append(tmp)
 
 def get(key, L1, L2):
-    t1 = threading.Thread(target=API1, args=(L1,key,)) 
+    # t1 = threading.Thread(target=API1, args=(L1,key,))
     t2 = threading.Thread(target=API2, args=(L2,key,)) 
 
     # starting thread 1 
-    t1.start() 
+    # t1.start()
     # starting thread 2 
     t2.start() 
   
     # wait until thread 1 is completely executed 
-    t1.join() 
+    # t1.join()
     # wait until thread 2 is completely executed 
     t2.join() 
   
@@ -38,14 +38,16 @@ def get(key, L1, L2):
 def deliver(key):
     L1 = []
     L2 = []
-    key = "Lipstick"
     get(key, L1, L2)
-    #L1 = L1[0]
     L2 = L2[0]
     data = {}
     data['Product'] = []
-    for i in range(0, 30):  
+    #print (L2)
+    id = 0
+    for i in range(0, len(L2)):
         dic = {}
+        print (type(L2[i]))
+        dic["id"] = id
         dic["name"] = L2[i].name
         dic["price"] = L2[i].price
         dic["product_URL"] = L2[i].product_URL
@@ -53,8 +55,9 @@ def deliver(key):
         dic["review_score"] = L2[i].review_score
         dic["brand"] = L2[i].brand
         data['Product'].append(dic)
+        id += 1
 
-    #with open('data.txt', 'w') as outfile:  
+    #with open('data.txt', 'w') as outfile:
     #    json.dump(data, outfile)
     return data
 
@@ -62,10 +65,10 @@ app = Flask(__name__)
 
 @app.route("/", methods=['POST'])
 def index():
-    print("hello")
-    key = request.get_json()['KEY']
+    print(request.args.get("KEY"))
+    key = request.args.get("KEY")
+
     print(key)
-    #web = request.get_json()['WEB']
     dic = deliver(key);
     return jsonify(dic)
 

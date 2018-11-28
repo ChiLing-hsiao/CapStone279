@@ -19,12 +19,12 @@ class Product(object):
         self.brand = brand
 
     def product_print(self):
-        #print "brand: " + self.brand
-        print("name:")
-        #print "price: " + self.price
-        #print "product_URL: " + self.product_URL
-        #print "figure_URL: " + self.figure_URL
-        #print "review_score: " + self.review_score
+        print ("brand: " + self.brand)
+        print ("name:" + self.name)
+        print ("price: " + self.price)
+        print ("product_URL: " + self.product_URL)
+        print ("figure_URL: " + self.figure_URL)
+        print ("review_score: " + self.review_score)
         
 class Comment(object):
     """docstring for Comment"""
