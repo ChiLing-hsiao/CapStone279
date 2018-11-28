@@ -10,13 +10,19 @@ import ProductTable from '../ProductTable/ProductTable'
 
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
+// import { Router,Route,hashHistory} from 'react-router';
+import axios from "axios";
+
 const mql = window.matchMedia(`(min-width: 800px)`);
 
 class SideBar extends Component {
-
     state = {
         searchKey: ""
     };
+
+    transferSearchKey(searchKey){
+        this.setState({searchKey: searchKey});
+    }
 
     constructor(props) {
         super(props);
@@ -68,8 +74,16 @@ class SideBar extends Component {
                         onSetOpen={this.onSetSidebarOpen}
                         styles={{overlay: {marginTop: "53px",}}}
                     >
-                        <SearchBar clicked={() => this.mediaQueryChanged(this.state.sidebarDocked)}/>
-                        <Route exact path="/" component={ProductTable}/>
+                        <SearchBar
+                            clicked={() => this.mediaQueryChanged(this.state.sidebarDocked)}
+                            transferSearchKey = {searchKey => this.transferSearchKey(searchKey)}
+                        />
+                        <Route exact path="/search"
+                               component={props => {
+                                   let obj = Object.assign({}, {searchKey: this.state.searchKey}, props)
+                                   return <ProductTable {...obj}/>
+                               }}/>
+                        <Route exact path={"/"} component={ProductTable}/>
                         <Route exact path="/detail/:id" component={Detailed} />
                     </Sidebar>
                 </Router>

@@ -1,3 +1,5 @@
+import random
+
 class API(object):
     """docstring for API"""
     def __init__(self, arg):
@@ -8,6 +10,7 @@ class Product(object):
     """docstring for product"""
     def __init__(self, brand, name, price, product_URL, figure_URL, review_score):
         super(Product, self).__init__()
+        self.id = random.randint(0, 1000000)
         self.name = name
         self.price = price
         self.product_URL = product_URL

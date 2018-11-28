@@ -21,7 +21,6 @@ class Detailed extends Component {
                     });
             }
         }
-
     }
 
     render() {

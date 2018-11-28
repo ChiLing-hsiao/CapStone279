@@ -10,10 +10,12 @@ from flask import Flask, jsonify, request, json
 
 def API1(L, key):
     tmp = Sephora.getProductInfo(key)
+    print(key)
     L.append(tmp);
 
 def API2(L, key):
     tmp = Bloomindale.getProductInfo(key)
+    print(key)
     L.append(tmp)
 
 def get(key, L1, L2):
@@ -60,11 +62,13 @@ app = Flask(__name__)
 
 @app.route("/", methods=['POST'])
 def index():
+    print("hello")
     key = request.get_json()['KEY']
+    print(key)
     #web = request.get_json()['WEB']
     dic = deliver(key);
     return jsonify(dic)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='127.0.0.1',port=5000)
     #print "done"

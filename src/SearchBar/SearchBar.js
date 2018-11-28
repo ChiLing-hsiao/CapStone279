@@ -9,21 +9,6 @@ import {Link} from "react-router-dom";
 import Sidebar from "react-sidebar";
 
 class SearchBar extends Component {
-
-    state = {
-        searchKey: ""
-    };
-
-    postSearchHandler = () => {
-        const data = {
-            KEY: this.state.searchKey
-        };
-        axios.post('https://jsonplaceholder.typicode.com/posts', data)
-            .then(response => {
-                console.log(response);
-            });
-    };
-
     render() {
         return (
             <Navbar className='topnav'>
@@ -32,22 +17,18 @@ class SearchBar extends Component {
                     <span></span>
                     <span></span>
                 </button>
-
                 <Link to="/">
                     <button>Home</button>
                 </Link>
-
                 <div className="search-container">
                     <input type="text" placeholder="Search.." className="search"
-                           onChange={(event) => this.setState({searchKey: event.target.value})}
+                           onChange={(event) => this.props.transferSearchKey(event.target.value)}
                     />
-                    <button onClick={this.postSearchHandler} type="submit"><FontAwesomeIcon icon={Icons.faSearchPlus}
-                                                                                            size="2x"/></button>
+                    <Link to="/Search"><FontAwesomeIcon icon={Icons.faSearchPlus} size="2x"/></Link>
                 </div>
-
             </Navbar>
         );
     }
-};
+}
 
 export default SearchBar;

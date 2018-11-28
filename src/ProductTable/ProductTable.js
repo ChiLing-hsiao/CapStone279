@@ -31,7 +31,7 @@ const PRODUCTS = [
         figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
         brand: "La Mer",
         review_score: "0"
-    },{
+    }, {
         id: "2",
         name: "The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
@@ -39,7 +39,7 @@ const PRODUCTS = [
         figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
         brand: "La Mer",
         review_score: "0"
-    },{
+    }, {
         id: "3",
         name: "3The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
@@ -47,7 +47,7 @@ const PRODUCTS = [
         figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
         brand: "La Mer",
         review_score: "0"
-    },{
+    }, {
         id: "4",
         name: "4The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
@@ -55,7 +55,7 @@ const PRODUCTS = [
         figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
         brand: "La Mer",
         review_score: "0"
-    },{
+    }, {
         id: "5",
         name: "5The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
@@ -63,7 +63,7 @@ const PRODUCTS = [
         figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
         brand: "La Mer",
         review_score: "0"
-    },{
+    }, {
         id: "6",
         name: "6The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
@@ -71,7 +71,7 @@ const PRODUCTS = [
         figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
         brand: "La Mer",
         review_score: "0"
-    },{
+    }, {
         id: "7",
         name: "7The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
@@ -79,7 +79,7 @@ const PRODUCTS = [
         figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
         brand: "La Mer",
         review_score: "0"
-    },{
+    }, {
         id: "8",
         name: "8The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
@@ -87,7 +87,7 @@ const PRODUCTS = [
         figure_URL: "https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10067624_fpx.tif?$2014_BROWSE_FASHION$&hei=350&wid=280",
         brand: "La Mer",
         review_score: "0"
-    },{
+    }, {
         id: "9",
         name: "9The Luminous Lifting Cushion Foundation SPF 20",
         price: "$120.00",
@@ -100,33 +100,40 @@ const PRODUCTS = [
 
 class ProductTable extends Component {
 
+    constructor(props) {
+        super(props);
+
+    }
+
     state = {
-        products: [],
-        keyword: ""
+        products: []
     };
 
     componentDidMount() {
-        axios.get('http://localhost:3004/Product')
-            .then(response => {
-                const products = response.data.slice(0, 9).map(product => {
-                    return {
-                        ...product,
-                        author: 'Bicheng'
-                    }
-                });
-                this.setState({products: products});
-            });
-    }
-
-    componentDidUpdate() {
-        if (this.props.id) {
-            if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {
-                axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
-                    .then(response => {
-                        // console.log(response);
-                        this.setState({loadedPost: response.data});
+        if (typeof(this.props.searchKey) == "undefined") {
+            axios.get('http://localhost:3004/Product')
+                .then(response => {
+                    const products = response.data.slice(0, 9).map(product => {
+                        return {
+                            ...product,
+                            author: 'Bicheng'
+                        }
                     });
-            }
+                    this.setState({products: products});
+                });
+        }else{
+            let data = {KEY: this.props.searchKey};
+            alert(data.KEY);
+            axios.post("http://127.0.0.1:5000/", data)
+                .then(response => {
+                    const products = response.data.slice(0, 9).map(product => {
+                        return {
+                            ...product,
+                            author: 'Bicheng'
+                        }
+                    });
+                    this.setState({products: products});
+                });
         }
     }
 
