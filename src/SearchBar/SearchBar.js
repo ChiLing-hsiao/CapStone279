@@ -9,6 +9,10 @@ import {Link} from "react-router-dom";
 import Sidebar from "react-sidebar";
 
 class SearchBar extends Component {
+    state = {
+        tmpKey: ""
+    };
+
     render() {
         return (
             <Navbar className='topnav'>
@@ -22,9 +26,11 @@ class SearchBar extends Component {
                 </Link>
                 <div className="search-container">
                     <input type="text" placeholder="Search.." className="search"
-                           onChange={(event) => this.props.transferSearchKey(event.target.value)}
-                    />
-                    <Link to="/search"><FontAwesomeIcon icon={Icons.faSearchPlus} size="2x"/></Link>
+                           onChange={(event) => this.setState({tmpKey :  event.target.value})} />
+                    {/*<Link to={{ pathname : "/search" , state : { searchKey: this.state.tmpKey }}}>*/}
+                        <Link to={`/search/${this.state.tmpKey}`}>
+                        <FontAwesomeIcon icon={Icons.faSearchPlus} size="2x"/>
+                    </Link>
                 </div>
             </Navbar>
         );

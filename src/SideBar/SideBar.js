@@ -20,7 +20,7 @@ class SideBar extends Component {
         searchKey: ""
     };
 
-    transferSearchKey(searchKey){
+    transferSearchKey(searchKey) {
         this.setState({searchKey: searchKey});
     }
 
@@ -76,15 +76,11 @@ class SideBar extends Component {
                     >
                         <SearchBar
                             clicked={() => this.mediaQueryChanged(this.state.sidebarDocked)}
-                            transferSearchKey = {searchKey => this.transferSearchKey(searchKey)}
+                            transferSearchKey={searchKey => this.transferSearchKey(searchKey)}
                         />
-                        <Route exact path="/search"
-                               component={props => {
-                                   let obj = Object.assign({}, {searchKey: this.state.searchKey}, props)
-                                   return <ProductTable {...obj}/>
-                               }}/>
+                        <Route exact path="/search/:tmpKey" component={ProductTable}/>
                         <Route exact path={"/"} component={ProductTable}/>
-                        <Route exact path="/detail/:id" component={Detailed} />
+                        <Route exact path="/detail/:id" component={Detailed}/>
                     </Sidebar>
                 </Router>
             </div>

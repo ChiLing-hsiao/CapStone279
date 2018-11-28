@@ -102,7 +102,6 @@ class ProductTable extends Component {
 
     constructor(props) {
         super(props);
-
     }
 
     state = {
@@ -110,33 +109,32 @@ class ProductTable extends Component {
     };
 
     componentDidMount() {
-        if (typeof(this.props.searchKey) == "undefined") {
-            axios.get('http://localhost:3004/Product')
-                .then(response => {
-                    const products = response.data.slice(0, 9).map(product => {
-                        return {
-                            ...product,
-                            author: 'Bicheng'
-                        }
-                    });
-                    console.log(products);
-                    this.setState({products: products});
-                });
-        }else{
-            let data = {KEY: this.props.searchKey};
-            alert(data.KEY);
-            axios.post("http://127.0.0.1:5000/", data)
-                .then(response => {
-                    const products = response.data["Product"].slice(0, 9).map(product => {
-                        return {
-                            ...product,
-                            author: 'Bicheng'
-                        }
-                    });
-                    console.log(products);
-                    this.setState({products: products});
-                });
+        alert("search");
+        let data = {KEY: ""};
+        if (this.props.match.params && this.props.match.params.tmpKey) {
+            data.KEY = this.props.match.params.tmpKey;
         }
+        alert("search: " + data.KEY);
+        data.KEY = "hello";
+        const options = {
+            method: 'POST',
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+            data: data,
+            url: 'http://127.0.0.1:5000/'
+        };
+        axios(options)
+            .then(response => {
+                const products = response.data["Product"].slice(0, 9).map(product => {
+                    return {
+                        ...product,
+                        author: 'Bicheng'
+                    }
+                });
+                console.log(products);
+                this.setState({products: products});
+            });
+
+        // }
     }
 
     render() {

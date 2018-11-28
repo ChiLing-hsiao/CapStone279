@@ -46,7 +46,7 @@ def deliver(key):
     id = 0
     for i in range(0, len(L2)):
         dic = {}
-        print (type(L2[i]))
+        # print (type(L2[i]))
         dic["id"] = id
         dic["name"] = L2[i].name
         dic["price"] = L2[i].price
@@ -65,9 +65,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=['POST'])
 def index():
-    print(request.args.get("KEY"))
-    key = request.args.get("KEY")
-
+    key = request.form.get("KEY")
     print(key)
     dic = deliver(key);
     return jsonify(dic)
