@@ -109,28 +109,27 @@ class ProductTable extends Component {
     };
 
     componentDidMount() {
-        alert("search");
+        alert("searchFFF");
         let data = {KEY: ""};
         if (this.props.match.params && this.props.match.params.tmpKey) {
             data.KEY = this.props.match.params.tmpKey;
         }
-        alert("search: " + data.KEY);
+        alert("searchFFFFFF: " + data.KEY);
         data.KEY = "hello";
-        const options = {
-            method: 'POST',
-            headers: { 'content-type': 'application/x-www-form-urlencoded' },
-            data: data,
-            url: 'http://127.0.0.1:5000/'
-        };
-        axios(options)
+
+
+        const params = new URLSearchParams();
+        params.append('KEY', 'dgfdsfg');
+        axios.post('http://localhost:5000/', params)
             .then(response => {
+                console.log(products);
                 const products = response.data["Product"].slice(0, 9).map(product => {
                     return {
                         ...product,
                         author: 'Bicheng'
                     }
                 });
-                console.log(products);
+                
                 this.setState({products: products});
             });
 
