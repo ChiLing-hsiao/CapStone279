@@ -42,11 +42,14 @@ def deliver(key):
     L2 = L2[0]
     data = {}
     data['Product'] = []
-    #print (L2)
+    print ('Get L2' + str(len(L2)))
     id = 0
     for i in range(0, len(L2)):
         dic = {}
-        # print (type(L2[i]))
+        print (L2[i].name)
+        print (L2[i].price)
+        print (L2[i].product_URL)
+        print (L2[i].figure_URL)
         dic["id"] = id
         dic["name"] = L2[i].name
         dic["price"] = L2[i].price
