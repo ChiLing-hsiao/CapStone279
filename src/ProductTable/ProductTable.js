@@ -105,19 +105,37 @@ class ProductTable extends Component {
     }
 
     state = {
+        keyword: "",
         products: []
     };
 
     componentDidMount() {
-        alert("searchFFF");
-        let data = {KEY: ""};
+
+        this.updateProduct();
+    }
+
+    componentDidUpdate() {
+        if (this.props.match.params && this.props.match.params.tmpKey) {
+            if (this.state.keyword != this.props.match.params.tmpKey) {
+                this.updateProduct();
+            }
+        }
+    }
+
+    updateProduct() {
+        let data = {KEY: "foundation"};
         if (this.props.match.params && this.props.match.params.tmpKey) {
             data.KEY = this.props.match.params.tmpKey;
+            this.setState({keyword: this.props.match.params.tmpKey});
         }
+<<<<<<< HEAD
         alert("searchFFFFFF: " + data.KEY);
         data.KEY = "chanel";
+=======
+        alert("search: " + data.KEY);
+>>>>>>> f5d95d369d391520bd20aeb7089f30164d8fd8a3
         const params = new URLSearchParams();
-        params.append('KEY', 'clinique');
+        params.append("KEY", data.KEY);
         axios.post('http://localhost:5000/', params)
             .then(response => {
                 console.log(response);
@@ -127,10 +145,8 @@ class ProductTable extends Component {
                         author: 'Bicheng'
                     }
                 });
-                
                 this.setState({products: products});
             });
-
         // }
     }
 
