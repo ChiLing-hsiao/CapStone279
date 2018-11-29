@@ -14,7 +14,9 @@ class Detailed extends Component {
     componentDidMount() {
         if (this.props.match.params.id) {
             if (!this.state.loadedProduct || (this.state.loadedProduct && this.state.loadedProduct.id != this.props.match.params.id)) {
-                axios.get('http://localhost:3004/Detail/' + this.props.match.params.id)
+                const params = new URLSearchParams();
+                params.append("ID", this.props.match.params.id);
+                axios.post('http://localhost:5000/detail', params)
                     .then(response => {
                         this.setState({loadedProduct: response.data});
                         console.log(this.props.match.params.id);
@@ -25,7 +27,7 @@ class Detailed extends Component {
 
     render() {
         let post = <p style={{textAlign: 'center'}}>Please select a Product!</p>;
-        if (this.props.match.params.id) {
+        if (!this.props.match.params.id) {
             post = <p style={{textAlign: 'center'}}>Loading...!</p>;
         }
         if (this.state.loadedProduct) {
