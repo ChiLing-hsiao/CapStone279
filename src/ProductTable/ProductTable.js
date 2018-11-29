@@ -115,7 +115,7 @@ class ProductTable extends Component {
             data.KEY = this.props.match.params.tmpKey;
         }
         alert("searchFFFFFF: " + data.KEY);
-        data.KEY = "clinique";
+        data.KEY = "chanel";
         const params = new URLSearchParams();
         params.append('KEY', 'clinique');
         axios.post('http://localhost:5000/', params)

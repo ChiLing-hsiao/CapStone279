@@ -8,15 +8,24 @@ import threading
 import copy
 from flask import Flask, jsonify, request, json
 
+id = 0
+DB = {}
+
 def API1(L, key):
-    tmp = Sephora.getProductInfo(key)
-    print(key)
-    L.append(tmp);
+    try:
+        tmp = Sephora.getProductInfo(key)
+        print(key)
+        L.append(tmp);
+    except:
+        print("ERROR in thread1")
 
 def API2(L, key):
-    tmp = Bloomindale.getProductInfo(key)
-    print(key)
-    L.append(tmp)
+    try:
+        tmp = Bloomindale.getProductInfo(key)
+        print(key)
+        L.append(tmp)
+    except:
+        print("EROOR in thread2")
 
 def get(key, L1, L2):
     # t1 = threading.Thread(target=API1, args=(L1,key,))
@@ -36,6 +45,7 @@ def get(key, L1, L2):
     #print "Done!"
 
 def deliver(key):
+    global id, DB
     L1 = []
     L2 = []
     get(key, L1, L2)
@@ -43,7 +53,6 @@ def deliver(key):
     data = {}
     data['Product'] = []
     print ('Get L2' + str(len(L2)))
-    id = 0
     for i in range(0, len(L2)):
         dic = {}
         print (L2[i].name)
@@ -58,6 +67,7 @@ def deliver(key):
         dic["review_score"] = L2[i].review_score
         dic["brand"] = L2[i].brand
         data['Product'].append(dic)
+        DB[id] = dic
         id += 1
 
     #with open('data.txt', 'w') as outfile:
@@ -71,6 +81,15 @@ def index():
     key = request.form.get("KEY")
     print(key)
     dic = deliver(key);
+    return jsonify(dic)
+
+@app.route("/detail", methods=['POST'])
+def detail():
+    global id, DB
+    id = int(request.form.get("ID"))
+    print(id)
+    dic = DB[id];
+    #dic["Comment"] = comment_deliver(Bloomindale.getProductReview(dic[product_URL]))
     return jsonify(dic)
 
 if __name__ == "__main__":

@@ -59,6 +59,7 @@ def getProductReview(url):
     driver.get(url)               
     driver.execute_script("window.scrollBy(0, (document.body.scrollHeight*0.6));")
 
+    comment = {}
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     for review in soup.find_all('div', class_='BVRRContentReview'):
         author = review.find('span', class_='BVRRNickname').text
@@ -66,6 +67,7 @@ def getProductReview(url):
         title = review.find('span', class_='BVRRReviewTitle').text
         content = review.find('span', class_='BVRRReviewText').text
         score = review.find('span', class_='BVRRRatingNumber').text
+        
         print ("---")
         print (author)
         print (date)
@@ -76,5 +78,5 @@ def getProductReview(url):
     driver.close()
 
 if __name__ == "__main__":
-    getProductInfo('clinique')
+    getProductInfo('chanel')
     # getProductReview('https://www.bloomingdales.com/shop/product/estee-lauder-double-wear-stay-in-place-liquid-makeup?ID=668196&CategoryID=2921')
