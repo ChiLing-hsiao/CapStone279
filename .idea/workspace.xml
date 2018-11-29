@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6f59e463-6f58-43fd-bac6-eaad0c469c7a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Detailed/Detailed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Detailed/Detailed.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProductTable/ProductCategoryRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProductTable/ProductCategoryRow.js" afterDir="false" />
-    </list>
+    <list default="true" id="6f59e463-6f58-43fd-bac6-eaad0c469c7a" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -76,11 +73,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Detailed/Detailed.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="20" column="39" lean-forward="true" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+            <state relative-caret-position="312">
+              <caret line="19" column="39" lean-forward="true" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -91,8 +88,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ProductTable/ProductTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="132" column="39" lean-forward="true" selection-start-line="131" selection-start-column="8" selection-end-line="132" selection-end-column="39" />
+            <state relative-caret-position="214">
+              <caret line="131" column="40" lean-forward="true" selection-start-line="131" selection-start-column="40" selection-end-line="131" selection-end-column="40" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -112,7 +109,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/backend/main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
@@ -165,9 +162,9 @@
         <option value="$PROJECT_DIR$/src/backend/main.py" />
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/SideBar/SideBar.js" />
-        <option value="$PROJECT_DIR$/src/ProductTable/ProductTable.js" />
         <option value="$PROJECT_DIR$/src/ProductTable/ProductCategoryRow.js" />
         <option value="$PROJECT_DIR$/src/Detailed/Detailed.js" />
+        <option value="$PROJECT_DIR$/src/ProductTable/ProductTable.js" />
       </list>
     </option>
   </component>
@@ -314,12 +311,12 @@
       <workItem from="1543389629776" duration="496000" />
       <workItem from="1543429645925" duration="177000" />
       <workItem from="1543432266492" duration="10140000" />
-      <workItem from="1543451552195" duration="552000" />
+      <workItem from="1543451552195" duration="759000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49610000" />
+    <option name="totallyTimeSpent" value="49817000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -523,6 +520,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Detailed/Detailed.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="19" column="39" lean-forward="true" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ProductTable/ProductTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="131" column="40" lean-forward="true" selection-start-line="131" selection-start-column="40" selection-end-line="131" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ProductTable/ProductCategoryRow.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
@@ -537,26 +554,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="89" column="12" selection-start-line="89" selection-start-column="10" selection-end-line="89" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ProductTable/ProductTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="132" column="39" lean-forward="true" selection-start-line="131" selection-start-column="8" selection-end-line="132" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Detailed/Detailed.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="20" column="39" lean-forward="true" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
