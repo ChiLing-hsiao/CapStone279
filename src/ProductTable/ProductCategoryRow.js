@@ -28,7 +28,7 @@ export default class ProductCategoryRow extends Component {
     }
 
     render() {
-        alert(this.props.product.id);
+        // alert(this.props.product.id);
         return (
             <Col sm="3" >
                 <Link to={{ pathname: '/detail/' + this.props.product.id }}>

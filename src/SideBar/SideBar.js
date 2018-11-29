@@ -60,12 +60,12 @@ class SideBar extends Component {
                             <div className='sideBack'>
                                 <div className='bar'></div>
                                 <ul className='sidebar'>
-                                    <a href="#about">MAKEUP</a>
-                                    <a href="#services">SKINCARE</a>
-                                    <a href="#clients">FRANGRANCE</a>
-                                    <a href="#contact">HAIR</a>
-                                    <a href="#">BATH BODY</a>
-                                    <a href="">MEN</a>
+                                    <a href="http://localhost:3000/search/Makeup">MAKEUP</a>
+                                    <a href="http://localhost:3000/search/SKINCARE">SKINCARE</a>
+                                    <a href="http://localhost:3000/search/FRANGRANCE">FRANGRANCE</a>
+                                    <a href="http://localhost:3000/search/hair">HAIR</a>
+                                    <a href="http://localhost:3000/search/bathbody">BATH BODY</a>
+                                    <a href="http://localhost:3000/search/man">MEN</a>
                                 </ul>
                             </div>}
                         overlayClassName="overlay"
