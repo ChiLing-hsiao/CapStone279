@@ -29,24 +29,24 @@ export default class ProductCategoryRow extends Component {
 
     render() {
         return (
-            <Col sm="6" lg="4">
+            <Col sm="3" >
                 <Link to={{ pathname: '/detail/' + this.props.product.id }}>
                     <Card body style={{borderColor: 'white'}} className="text-center">
-                        <CardImg className="img-fluid d-block mx-auto" style={{height: '120px', width: '120px'}}
+                        <CardImg className="img-fluid d-block mx-auto" style={{ width: '120px'}}
                                  src={this.props.product.figure_URL}/>
                         <CardBody>
-                            <CardTitle style={{fontSize: '14px'}}
+                            <CardTitle style={{fontSize: '15px'}}
                                        className='project__cardTitle'>
-                                {this.props.product.name}
-                                </CardTitle>
-                            <CardSubtitle style={{height: '45px', fontSize: '10px'}}>
                                 {this.props.product.brand}
+                                </CardTitle>
+                            <CardSubtitle style={{ fontSize: '10px'}}>
+                                {this.props.product.name}
                             </CardSubtitle>
-                            <CardText style={{height: '3px', fontSize: '10px'}}>
+                            <CardText style={{height:'3px', fontSize: '10px'}}>
                                 {this.props.product.price}
                             </CardText>
-                            <CardText style={{height: '5px', fontSize: '10px'}}>
-                                {this.props.product.review_score}
+                            <CardText style={{fontSize: '5px'}}>
+                              {this.props.product.review_score}
                             </CardText>
                         </CardBody>
                     </Card>

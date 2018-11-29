@@ -128,13 +128,13 @@ class ProductTable extends Component {
             data.KEY = this.props.match.params.tmpKey;
             this.setState({keyword: this.props.match.params.tmpKey});
         }
-        alert("search: " + data.KEY);
+        //alert("search: " + data.KEY);
         const params = new URLSearchParams();
         params.append("KEY", data.KEY);
         axios.post('http://localhost:5000/', params)
             .then(response => {
                 console.log(response);
-                const products = response.data["Product"].slice(0, 9).map(product => {
+                const products = response.data["Product"].slice(0, 8).map(product => {
                     return {
                         ...product,
                         author: 'Bicheng'

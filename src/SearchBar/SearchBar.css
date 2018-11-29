@@ -43,6 +43,7 @@ body {
   margin-top: 8px;
   margin-right: 16px;
   background: #ddd;
+  height: 37px;
   border: none;                                                               
   cursor: pointer;
 }

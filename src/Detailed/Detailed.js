@@ -25,7 +25,7 @@ class Detailed extends Component {
 
     render() {
         let post = <p style={{textAlign: 'center'}}>Please select a Product!</p>;
-        if (this.props.match.params.id) {
+        if (!this.props.match.params.id) {
             post = <p style={{textAlign: 'center'}}>Loading...!</p>;
         }
         if (this.state.loadedProduct) {
@@ -34,7 +34,7 @@ class Detailed extends Component {
                     <Card>
                         <Container fluid>
                             <Row className='wrapper'>
-                                <Col className="preview" md='6'>
+                                <Col className="preview" md='5'>
                                     <div className="preview-pic tab-content">
                                         <div className="tab-pane active" id="pic-1">
                                             <img src={this.state.loadedProduct.figure_URL}/>
@@ -58,7 +58,7 @@ class Detailed extends Component {
                                         </li>
                                     </ul>
                                 </Col>
-                                <Col className="details" md='6'>
+                                <Col className="details" md='5'>
                                     <h3 className="product-brand">{this.state.loadedProduct.brand}</h3>
                                     <span className="product-name">{this.state.loadedProduct.name}</span>
                                     <p className="product-description">SIZE 9 x 0.05 oz/ 1.3 g</p>

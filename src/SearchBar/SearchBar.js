@@ -29,7 +29,7 @@ class SearchBar extends Component {
                            onChange={(event) => this.setState({tmpKey :  event.target.value})} />
                     {/*<Link to={{ pathname : "/search" , state : { searchKey: this.state.tmpKey }}}>*/}
                         <Link to={`/search/${this.state.tmpKey}`}>
-                        <FontAwesomeIcon icon={Icons.faSearchPlus} size="2x"/>
+                        <button><FontAwesomeIcon icon={Icons.faSearchPlus} size="2x"/></button>
                     </Link>
                 </div>
             </Navbar>
