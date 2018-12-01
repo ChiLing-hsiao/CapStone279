@@ -8,7 +8,8 @@ import './Detailed.css'
 
 class Detailed extends Component {
     state = {
-        loadedProduct: null
+        loadedProduct: null,
+        selectedImage:''
     };
 
     componentDidMount() {
@@ -24,6 +25,7 @@ class Detailed extends Component {
             }
         }
     }
+   
 
     render() {
         let post = <p style={{textAlign: 'center'}}>Please select a Product!</p>;
@@ -36,7 +38,7 @@ class Detailed extends Component {
                     <Card>
                         <Container fluid>
                             <Row className='wrapper'>
-                                <Col className="preview" md='5'>
+                                <Col className="preview" md='4'>
                                     <div className="preview-pic tab-content">
                                         <div className="tab-pane active" id="pic-1">
                                             <img src={this.state.loadedProduct.figure_URL}/>
@@ -44,7 +46,7 @@ class Detailed extends Component {
                                     </div>
                                     <ul className="preview-thumbnail nav nav-tabs">
                                         <li className="active"><a data-target="#pic-1" data-toggle="tab"><img
-                                            src={this.state.loadedProduct.figure_URL}/></a>
+                                        src={this.state.loadedProduct.figure_URL} /></a>
                                         </li>
                                         <li><a data-target="#pic-2" data-toggle="tab"><img
                                             src={this.state.loadedProduct.figure_URL}/></a>
@@ -60,15 +62,12 @@ class Detailed extends Component {
                                         </li>
                                     </ul>
                                 </Col>
-                                <Col className="details" md='5'>
+                                <Col className="details" md='6'>
                                     <h3 className="product-brand">{this.state.loadedProduct.brand}</h3>
                                     <span className="product-name">{this.state.loadedProduct.name}</span>
                                     <p className="product-description">SIZE 9 x 0.05 oz/ 1.3 g</p>
-                                    <h5 className="colors">colors:
-                                        <span className="color orange " data-toggle="tooltip"
-                                              title="Not In store"></span>
-                                        <span className="color green"></span>
-                                        <span className="color blue"></span>
+                                    <h5 className="colors">Best Deal:
+                                        
                                     </h5>
                                 </Col>
                             </Row>

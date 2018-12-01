@@ -1,5 +1,6 @@
-import React, {Component} from 'react';//引入react
-
+import React, { Component } from 'react';//引入react
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as Icons from "@fortawesome/free-solid-svg-icons"
 
 import { Link } from 'react-router-dom';
 
@@ -31,27 +32,32 @@ export default class ProductCategoryRow extends Component {
         // alert(this.props.product.id);
         return (
             <Col sm="3" >
-                <Link to={{ pathname: '/detail/' + this.props.product.id }}>
-                    <Card body style={{borderColor: 'white'}} className="text-center">
-                        <CardImg className="img-fluid d-block mx-auto" style={{ width: '120px'}}
-                                 src={this.props.product.figure_URL}/>
-                        <CardBody>
-                            <CardTitle style={{fontSize: '15px'}}
-                                       className='project__cardTitle'>
+
+                <Card body style={{ borderColor: 'white' }} className="text-center">
+                    <Link to={{ pathname: '/detail/' + this.props.product.id }} style={{ textDecoration: 'none', color: 'black' }}>
+                        <CardImg className="img-fluid d-block mx-auto" style={{ width: '120px' }}
+                            src={this.props.product.figure_URL} />
+                    </Link>
+                    <CardBody>
+                        <Link to={{ pathname: '/detail/' + this.props.product.id }} style={{ color: 'black' }}>
+                            <CardTitle style={{ fontSize: '15px' }}
+                                className='project__cardTitle'>
                                 {this.props.product.brand}
-                                </CardTitle>
-                            <CardSubtitle style={{ fontSize: '10px'}}>
+                            </CardTitle>
+                            <CardSubtitle style={{ fontSize: '10px' }}>
                                 {this.props.product.name}
                             </CardSubtitle>
-                            <CardText style={{height:'3px', fontSize: '10px'}}>
+                        </Link>
+                        <Link to={{ pathname: '/detail/' + this.props.product.id }} style={{ textDecoration: 'none', color: 'black' }}>
+                            <CardText style={{ height: '3px', fontSize: '10px' }}>
                                 {this.props.product.price}
                             </CardText>
-                            <CardText style={{fontSize: '5px'}}>
-                              {this.props.product.review_score}
+                            <CardText style={{ fontSize: '5px' }}>
+                                {this.props.product.review_score}<FontAwesomeIcon icon={Icons.faStar}></FontAwesomeIcon>
                             </CardText>
-                        </CardBody>
-                    </Card>
-                </Link>
+                        </Link>
+                    </CardBody>
+                </Card>
             </Col>
         );
     }

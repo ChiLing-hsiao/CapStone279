@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Tab.css';
 import * as Icons from "@fortawesome/free-solid-svg-icons"
+import { Link } from "react-router-dom";
 export default class Example extends React.Component {
     constructor(props) {
         super(props);
@@ -50,7 +51,7 @@ export default class Example extends React.Component {
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Brand</th>
+                                            <th>Website</th>
                                             <th>Price</th>
                                             <th></th>
                                         </tr>
@@ -60,19 +61,20 @@ export default class Example extends React.Component {
                                             <th scope="row">1</th>
                                             <td>Sephora</td>
                                             <td>$100</td>
-                                            <td>Buy</td>
+                                            <td><a href= "https://www.sephora.com/" target="_blank"><button>Buy <FontAwesomeIcon icon ={Icons.faHandPointRight}></FontAwesomeIcon></button></a></td>
+                                            
                                         </tr>
                                         <tr>
                                             <th scope="row">2</th>
                                             <td>Bloomindales</td>
-                                            <td>$100</td>
-                                            <td>Buy</td>
+                                            <td>$110</td>
+                                            <td><a href= "https://www.bloomingdales.com/" target="_blank"><button>Buy <FontAwesomeIcon icon ={Icons.faHandPointRight}></FontAwesomeIcon></button></a></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">3</th>
                                             <td>Nordstrom</td>
-                                            <td>$100</td>
-                                            <td>Buy</td>
+                                            <td>$120</td>
+                                            <td><a href= "https://shop.nordstrom.com/?origin=tab-logo" target="_blank"><button>Buy <FontAwesomeIcon icon ={Icons.faHandPointRight}></FontAwesomeIcon></button></a></td>
                                         </tr>
                                     </tbody>
                                 </Table>
