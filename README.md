@@ -1,4 +1,14 @@
+GUI
+GUI sends users’ queries (can be keyword search or asking for detail of one specific product) to middleware, get the data, and displays it in the way user desired (sort by price, reviews). We use ReactJS as our front-end framework.
+
+Middleware 
+Middleware merges the result from the crawler and sorts the results according to users’ expectation (price, review, ..). We use JSON as our transferring format.
+
+Crawler
+Since different websites require different rules to scrape. We unified our business to provide 2 simple API, search API and detail API. The first one takes keyword as parameter and return overall information of searching results from each website (name, brand, price, thumbnail). Detail API takes a product ID as parameter and return complete information of that product, including comments, reviews, size option, and prices.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
