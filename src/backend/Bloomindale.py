@@ -4,15 +4,16 @@ from selenium.webdriver.chrome.options import Options
 import requests
 import time
 import Struct
+import math
 
 def getProductInfo(keyword):
     L = []
     url = 'https://www.bloomingdales.com/shop/search?keyword=%s' % keyword 
     response = requests.get(url, headers = { 'User-Agent': "Mozilla/5.0" })
     soup = BeautifulSoup(response.content, 'html.parser')
-    print ('url: ' + str(url))
-    print ('status code: ' + str(response.status_code))
-    print ('encoding: ' + str(response.encoding))
+    # print ('url: ' + str(url))
+    # print ('status code: ' + str(response.status_code))
+    # print ('encoding: ' + str(response.encoding))
 
     for product in soup.find_all('div', class_ = 'productThumbnail'):
         # print ("---")
@@ -38,18 +39,19 @@ def getProductInfo(keyword):
             brand = span_lis[0].text
             name = span_lis[1].text + ' ' + span_lis[2].text
         
-        product = Struct.Product(brand, name, price, product_url, picture_url, "0");
+        product = Struct.Product(brand, name, float(price[1:]), product_url, picture_url, 4.0);
         L.append(product);
-        print (product_url)
-        print (picture_url)
-        print (price)
+        #print (product_url)
+        #print (picture_url)
+        #print (price)
         # print (score)
-        print (brand)
-        print (name)
+        #print (brand)
+        #print (name)
 
     return L    
 
 def getProductReview(url):
+    L = []
     options = Options()
     options.add_argument('--headless')
     # options.add_argument('--disable-gpu')
@@ -61,6 +63,7 @@ def getProductReview(url):
 
     comment = {}
     soup = BeautifulSoup(driver.page_source, 'html.parser')
+
     for review in soup.find_all('div', class_='BVRRContentReview'):
         author = review.find('span', class_='BVRRNickname').text
         date = review.find('span', class_='BVRRReviewDate').text
@@ -68,15 +71,17 @@ def getProductReview(url):
         content = review.find('span', class_='BVRRReviewText').text
         score = review.find('span', class_='BVRRRatingNumber').text
         
-        print ("---")
-        print (author)
-        print (date)
-        print (title)
-        print (content)
-        print (score)
+        # print ("---")
+        # print (author)
+        # print (date)
+        # print (title)
+        # print (content)
+        # print (score)
+        comment = Struct.Comment(content, score, date, title)
+        L.append(comment)
 
     driver.close()
+    return L
 
-if __name__ == "__main__":
-    getProductInfo('chanel')
-    # getProductReview('https://www.bloomingdales.com/shop/product/estee-lauder-double-wear-stay-in-place-liquid-makeup?ID=668196&CategoryID=2921')
+# getProductInfo("foundation")
+# getProductReview('https://www.bloomingdales.com/shop/product/estee-lauder-double-wear-stay-in-place-liquid-makeup?ID=668196&CategoryID=2921')
