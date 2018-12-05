@@ -1,16 +1,25 @@
-import random
-
 class API(object):
     """docstring for API"""
     def __init__(self, arg):
         super(API, self).__init__()
         self.arg = arg
 
+class Merge_Product(object):
+    """docstring for product"""
+    def __init__(self):
+        super(Merge_Product, self).__init__()
+        self.name = ""
+        self.price = 0.0
+        self.product_URL = []
+        self.figure_URL = []
+        self.review_score = 0.0
+        self.brand = ""
+        self.source = []
+
 class Product(object):
     """docstring for product"""
     def __init__(self, brand, name, price, product_URL, figure_URL, review_score):
         super(Product, self).__init__()
-        self.id = random.randint(0, 1000000)
         self.name = name
         self.price = price
         self.product_URL = product_URL
@@ -19,24 +28,23 @@ class Product(object):
         self.brand = brand
 
     def product_print(self):
-        print ("brand: " + self.brand)
-        print ("name:" + self.name)
-        print ("price: " + self.price)
-        print ("product_URL: " + self.product_URL)
-        print ("figure_URL: " + self.figure_URL)
-        print ("review_score: " + self.review_score)
+        print "brand: " + self.brand
+        print "name: " + self.name
+        print "price: " + self.price
+        print "product_URL: " + self.product_URL
+        print "figure_URL: " + self.figure_URL
+        print "review_score: " + self.review_score
         
 class Comment(object):
     """docstring for Comment"""
-    def __init__(self, content, score, date, tile):
+    def __init__(self, content, score, date, title):
         super(Comment, self).__init__()
         self.content = content
         self.score = score
         self.date = date
-        self.tile = tile
+        self.title = title
     def __str__():
-        print("__str__")
-        #print self.content + " " + self.score + " " + self.date + " " + self.tile
+        print self.content + " " + self.score + " " + self.date + " " + self.title
 
 class Products(object):
     """docstring for Products"""
@@ -54,5 +62,5 @@ class Products(object):
 
     def print_all():
         for ele in products:
-            #print ele
-            print("-------------")
+            print ele
+            print "-------------"
