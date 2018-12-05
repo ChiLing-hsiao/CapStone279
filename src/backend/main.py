@@ -54,7 +54,8 @@ def product_merge(L, result, source):
         for mp in result:
             if product.brand.upper() == mp.brand.upper() and name_check(product.name, mp.name):
                 print (product.name);
-                mp.price = (mp.price*len(mp.product_URL) + product.price)/(len(mp.product_URL)+1)
+                mp.price = min(mp.price, product.price)
+                mp.original_price.append(product.price)
                 mp.review_score = (mp.review_score*len(mp.product_URL) + product.review_score)/(len(mp.product_URL)+1)
                 mp.product_URL.append(product.product_URL)
                 mp.figure_URL.append(product.figure_URL)
@@ -65,6 +66,7 @@ def product_merge(L, result, source):
             mp = Struct.Merge_Product()
             mp.name = product.name
             mp.price = product.price
+            mp.original_price.append(product.price)
             mp.product_URL.append(product.product_URL)
             mp.figure_URL.append(product.figure_URL)
             mp.review_score = product.review_score
@@ -84,6 +86,7 @@ def merge(L1, L2, L3):
             mp.review_score = product.review_score
             mp.brand = product.brand
             mp.source.append("Sephora")
+            mp.original_price.append(product.price)
             result.append(mp);
     
     if(L2):
@@ -96,6 +99,7 @@ def merge(L1, L2, L3):
             mp.review_score = product.review_score
             mp.brand = product.brand
             mp.source.append("Bloomindale")
+            mp.original_price.append(product.price)
             result.append(mp);
         else:
             product_merge(L2, result, "Bloomindale")
@@ -110,6 +114,7 @@ def merge(L1, L2, L3):
             mp.review_score = product.review_score
             mp.brand = product.brand
             mp.source.append("UTLA")
+            mp.original_price.append(product.price)
             result.append(mp);
         else:
             product_merge(L3, result, "UTLA")
@@ -181,6 +186,7 @@ def deliver(key):
         dic["review_score"] = result[i].review_score
         dic["brand"] = result[i].brand
         dic["source"] = result[i].source
+        dic["original_price"] = result[i].original_price
         data['Product'].append(dic)
         DB[id] = dic
         id += 1
@@ -277,7 +283,7 @@ def detail():
     return jsonify(dic)
 
 if __name__ == "__main__":
-    dic = deliver("SK2");
-    get_comment(dic['Product'][3]);
-    # app.run()
+    # dic = deliver("SK2");
+    # get_comment(dic['Product'][3]);
+    app.run()
     #print "done"
