@@ -1,4 +1,8 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver import DesiredCapabilities
+
+
 from selenium.common.exceptions import TimeoutException
 # available since 2.4.0
 from selenium.webdriver.support.ui import WebDriverWait
@@ -12,16 +16,23 @@ import requests
 from bs4 import BeautifulSoup
 
 def getProductReview(searchUrl):
-    L2 = [];
-    # Can't use, also dynamic web page
-        # searchUrl = 'https://www.sephora.com/product/ultra-hd-invisible-cover-foundation-P398321?icid2=products%20grid:p398321:product';
-        # agent = {"User-Agent":'Firefox'};
-        # page = requests.get(searchUrl, agent);
-        # print page;
-        # soup = BeautifulSoup(page.content, 'html.parser')
-        # print soup
+    L = []
     # Init driver
-    driver = webdriver.Chrome(executable_path='C:/Users/Ray/Desktop/scracp/chromedriver_win32/chromedriver')
+
+    # headless
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-extensions');
+    chrome_options.add_argument('--window-size=1920,1080');
+    
+    # certificate
+    capabilities = DesiredCapabilities.CHROME.copy()
+    capabilities['acceptSslCerts'] = True 
+    capabilities['acceptInsecureCerts'] = True
+
+    driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=chrome_options, desired_capabilities=capabilities)
+    # driver = webdriver.Chrome(executable_path='/Users/Leon/Desktop/capstone_test/chromedriver')
+    # baseUrl = 'https://www.sephora.com';
     driver.get(searchUrl);
     time.sleep(0.5)   # Delays for 0.5 seconds.
 
@@ -42,21 +53,16 @@ def getProductReview(searchUrl):
     reviewDates = soup.findAll("span", {"class" : reviewDateClass});
     reviewRatings = getReviewRatings(soup);
 
-    #print len(reviewTitles)
-    #print len(reviewContents)
-    #print len(reviewDates)
-    #print len(reviewRatings)
-
     for i in range(len(reviewTitles)):
         title = reviewTitles[i].contents;
         content = reviewContents[i].contents;
         date = reviewDates[i].contents;
         rating = reviewRatings[i];
-
-        ##############
-        productComment = Struct.Comment(content, rating, date, title);
-        L2.append(productComment);
-    return L2;
+        # print content
+        comment = Struct.Comment(content, rating, date, title)
+        L.append(comment)
+    driver.close();
+    return L
 
 def getReviewRatings(soup):
     divs = list();
@@ -79,11 +85,16 @@ def processRatingUnicodeInComment(ratingUnicode):
     return str(num)
 
 def getProductInfo(keyword):
-    # https://www.sephora.com/search?keyword=foundation
     searchUrl = 'https://www.sephora.com/search?keyword=' + keyword
 
+    # headless
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    # chrome_options.add_argument('--window-size=1920,1080');
+    driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=chrome_options)
+
     # Init driver
-    driver = webdriver.Chrome(executable_path='./chromedriver')
+    # driver = webdriver.Chrome(executable_path='/Users/Leon/Desktop/capstone_test/chromedriver')
     driver.get(searchUrl);
     time.sleep(0.5)   # Delays for 0.5 seconds.
 
@@ -96,47 +107,75 @@ def getProductInfo(keyword):
     # from bs4 import BeautifulSoup
     soup = BeautifulSoup(html.encode('utf-8'), 'html.parser')
 
+    # All products
+    products = soup.findAll('div', {"class" : "css-12egk0t"});
+
     # Brand
-    productsBrands = soup.findAll("span", {"data-at" : "sku_item_brand"});
-
+    productsBrands = [];
+    for product in products:
+        temp = product.findAll("span", {"data-at" : "sku_item_brand"});
+        brand = temp[0].contents[0].encode('ascii','ignore')
+        productsBrands.append(brand);
+    
     # Name
-    productsNames = soup.findAll("span", {"data-at" : "sku_item_name"});
-
+    productsNames = [];
+    for product in products:
+        temp = product.findAll("span", {"data-at" : "sku_item_name"});
+        name = temp[0].contents[0].encode('ascii','ignore')
+        productsNames.append(name);
+    
     # URL
-    productsUrls = soup.findAll("a", {"class" : "css-ix8km1"});
+    productsUrls = [];
+    for product in products:
+        temp = product.findAll("a", {"class" : "css-ix8km1"});
+        url = str(temp[0].get('href'));
+        productsUrls.append(url);
 
     # Price
-    productsPrices = soup.findAll("span", {"data-at" : "sku_item_price_list"});
-
+    productsPrices = [];
+    for product in products:
+        temp = product.findAll("span", {"data-at" : "sku_item_price_sale"});
+        if len(temp) == 0:
+            temp = product.findAll("span", {"data-at" : "sku_item_price_list"});
+        price = temp[0].contents[0].encode('ascii','ignore')
+        productsPrices.append(price);
+    
     # IMG_URL
-    imageUrls = soup.findAll("img", {"class" : "css-bynouy"});
-
+    imageUrls = [];
+    for product in products:
+        temp = product.findAll("img", {"class" : "css-18c52mt"});
+        imageUrl = str(temp[0].get('src'));
+        imageUrls.append(imageUrl);
+    
     # Rating
-    productsRatings = soup.findAll("div", {"class" : "css-17ol29l"});
-
+    productsRatings = [];
+    for product in products:
+        temp = product.findAll("div", {"class" : "css-17ol29l"});
+        productsRating = processRatingUnicode(temp[0].get('style'));
+        productsRatings.append(productsRating);
+    
     # # List all product on this page
+    # print len(productsNames);
     L = [];
-    #print len(productsNames);
-    #print len(imageUrls);
+    baseUrl = 'https://www.sephora.com';
     for i in range(len(productsNames)):
-        # print 'Brand:' + str(productsBrands[i].contents)
-        # print 'Product Name:' + str(productsNames[i].contents)
-        # print 'Product Url:' + str(productsUrls[i].get('href'))
-        # print 'Price:' + str(productsPrices[i].contents)
-        # print 'Image Url:' + str(imageUrls[i].get('src'))
-        # print 'Rating:' + processRatingUnicode(productsRatings[i].get('style'));
+        price = productsPrices[i]
+        if '-' in price:
+            price = price[0:price.find('-')-1]
+        price = price[price.find('$') + 1:]
+        product = Struct.Product(productsBrands[i], productsNames[i], float(price), baseUrl + productsUrls[i], imageUrls[i], float(productsRatings[i]));
+        # print 'Brand:' + productsBrands[i];
+        # print 'Product Name:' + productsNames[i];
+        # print 'Product Url:' + productsUrls[i];
+        # print 'Price:' + productsPrices[i];
+        # print 'Image Url:' + imageUrls[i];
+        # print 'Rating:' + productsRatings[i];
         # print '-----------'
-        brand =  str(productsBrands[i].contents)
-        productName = str(productsNames[i].contents)
-        productUrl = str(productsUrls[i].get('href'))
-        price = str(productsPrices[i].contents)
-        imageUrl = str(imageUrls[i].get('src'))
-        rating = processRatingUnicode(productsRatings[i].get('style'));
-        
-        product = Struct.Product(brand, productName, price, productUrl, imageUrl, rating);
         L.append(product);
-
+    
+    driver.close();
     return L;
+
 # @param {unicode} ratingUnicode 
 # @output {str} parse result
 def processRatingUnicode(ratingUnicode):
@@ -147,5 +186,6 @@ def processRatingUnicode(ratingUnicode):
     num = num * 5
     return str(num)
 
-#getProductInfo("foundation");
-#getProductReview('https://www.sephora.com/product/ultra-hd-invisible-cover-foundation-P398321?icid2=products%20grid:p398321:product');
+# getProductInfo("foundation");
+# getProductInfo("Tarte");
+# getProductReview('https://www.sephora.com/product/ultra-hd-invisible-cover-foundation-P398321?icid2=products%20grid:p398321:product');
