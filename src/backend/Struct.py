@@ -15,6 +15,7 @@ class Merge_Product(object):
         self.review_score = 0.0
         self.brand = ""
         self.source = []
+        self.original_price = []
 
 class Product(object):
     """docstring for product"""
@@ -27,13 +28,13 @@ class Product(object):
         self.review_score = review_score
         self.brand = brand
 
-    def product_print(self):
-        print "brand: " + self.brand
-        print "name: " + self.name
-        print "price: " + self.price
-        print "product_URL: " + self.product_URL
-        print "figure_URL: " + self.figure_URL
-        print "review_score: " + self.review_score
+    # def product_print(self):
+    #     print "brand: " + self.brand
+    #     print "name: " + self.name
+    #     print "price: " + self.price
+    #     print "product_URL: " + self.product_URL
+    #     print "figure_URL: " + self.figure_URL
+    #     print "review_score: " + self.review_score
         
 class Comment(object):
     """docstring for Comment"""
@@ -43,8 +44,6 @@ class Comment(object):
         self.score = score
         self.date = date
         self.title = title
-    def __str__():
-        print self.content + " " + self.score + " " + self.date + " " + self.title
 
 class Products(object):
     """docstring for Products"""
@@ -60,7 +59,7 @@ class Products(object):
         p = Product(brand, name, price, product_URL, figure_URL, review_score)
         products.append(p)
 
-    def print_all():
-        for ele in products:
-            print ele
-            print "-------------"
+    # def print_all():
+    #     for ele in products:
+    #         print ele
+    #         print "-------------"
