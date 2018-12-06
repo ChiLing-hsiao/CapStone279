@@ -58,8 +58,14 @@ def getProductReview(searchUrl):
         content = reviewContents[i].contents;
         date = reviewDates[i].contents;
         rating = reviewRatings[i];
+
+        # print(content[0]);
+        # print(rating);
+        # print(date[0]);
+        # print(title[0]);
+        # print("--------")
         # print content
-        comment = Struct.Comment(content, rating, date, title)
+        comment = Struct.Comment(content[0], rating, date[0], title[0])
         L.append(comment)
     driver.close();
     return L
@@ -78,8 +84,11 @@ def getReviewRatings(soup):
 
 # Sephora use the 'width' style to specify how many stars it is. One star is 20%.
 def processRatingUnicodeInComment(ratingUnicode):
-    temp = ratingUnicode.encode('ascii','ignore')
-    intString = ''.join(x for x in temp if x.isdigit())
+    # temp = ratingUnicode.encode('ascii','ignore')
+    # intString = ''.join(x for x in temp if x.isdigit())
+    # Python3
+    intString = ''.join(x for x in ratingUnicode if x.isdigit())
+
     num = int(intString)
     num /= 20
     return str(num)
@@ -160,10 +169,11 @@ def getProductInfo(keyword):
     baseUrl = 'https://www.sephora.com';
     for i in range(len(productsNames)):
         price = productsPrices[i]
+        price = price.decode('utf-8')
         if '-' in price:
             price = price[0:price.find('-')-1]
         price = price[price.find('$') + 1:]
-        product = Struct.Product(productsBrands[i], productsNames[i], float(price), baseUrl + productsUrls[i], imageUrls[i], float(productsRatings[i]));
+        product = Struct.Product(productsBrands[i].decode('utf-8'), productsNames[i].decode('utf-8'), float(price), baseUrl + productsUrls[i], baseUrl + imageUrls[i], float(productsRatings[i]));
         # print 'Brand:' + productsBrands[i];
         # print 'Product Name:' + productsNames[i];
         # print 'Product Url:' + productsUrls[i];
@@ -179,8 +189,13 @@ def getProductInfo(keyword):
 # @param {unicode} ratingUnicode 
 # @output {str} parse result
 def processRatingUnicode(ratingUnicode):
-    temp = ratingUnicode.encode('ascii','ignore')
-    intString = ''.join(x for x in temp if x.isdigit())
+    # Python2
+    # temp = ratingUnicode.encode('ascii','ignore')
+    # intString = ''.join(x for x in temp if x.isdigit())
+    
+    # Python3
+    intString = ''.join(x for x in ratingUnicode if x.isdigit())
+
     num = int(intString)
     num = num / math.pow(10, len(intString))
     num = num * 5
