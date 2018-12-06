@@ -279,8 +279,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=['POST'])
 def index():
-    data = json.loads(request.data)
-    key = data['KEY']
+    key = request.form.get("KEY")
     print(key)
     dic = deliver(key);
     return jsonify(dic)
@@ -288,8 +287,7 @@ def index():
 @app.route("/detail", methods=['POST'])
 def detail():
     global id, DB
-    data = json.loads(request.data)
-    id = int(data['ID'])
+    id = int(request.form.get("ID"))
     print(id)
     dic = DB[id];
     get_comment(dic);
@@ -298,5 +296,5 @@ def detail():
 if __name__ == "__main__":
     #dic = deliver("SK2");
     #get_comment(dic['Product'][3]);
-    app.run()
+    app.run(host='localhost',port=5000)
     #print "done"

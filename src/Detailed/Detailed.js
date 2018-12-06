@@ -28,10 +28,10 @@ class Detailed extends Component {
    
 
     render() {
-        let post = <p style={{textAlign: 'center'}}>Please select a Product!</p>;
-        if (!this.props.match.params.id) {
-            post = <p style={{textAlign: 'center'}}>Loading...!</p>;
-        }
+        let post = <p style={{textAlign: 'center'}}>Loading...!</p>;
+        // if (!this.props.match.params.id) {
+        //     post = <p style={{textAlign: 'center'}}>Loading...!</p>;
+        // }
         if (this.state.loadedProduct) {
             post = (
                 <div>
