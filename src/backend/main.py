@@ -3,11 +3,12 @@ import json
 import Bloomindale
 import Sephora
 import UTLA
-import thread
+import _thread
 import time
 import threading 
 import copy
 from flask import Flask, jsonify, request, json
+from random import shuffle
 
 id = 0
 DB = {}
@@ -15,7 +16,7 @@ DB = {}
 def name_check(A, B):
     if(A == B): 
         return True
-    if(abs(len(A) - len(B))/float(max(len(A), len(B))) > 0.3): 
+    if(abs(len(A) - len(B))/float(max(len(A), len(B))) > 0.15): 
         return False
     dicA = {}
     dicB = {}
@@ -43,7 +44,7 @@ def name_check(A, B):
         else:
             diff2 += dicB[ele]
 
-    if(max(diff, diff2)/float(max(len(A), len(B))) > 0.3): 
+    if(max(diff, diff2)/float(max(len(A), len(B))) > 0.15): 
         return False
     else:
         return True
@@ -53,7 +54,7 @@ def product_merge(L, result, source):
         check = False
         for mp in result:
             if product.brand.upper() == mp.brand.upper() and name_check(product.name, mp.name):
-                print (product.name);
+                # print (product.name);
                 mp.price = min(mp.price, product.price)
                 mp.original_price.append(product.price)
                 mp.review_score = (mp.review_score*len(mp.product_URL) + product.review_score)/(len(mp.product_URL)+1)
@@ -91,31 +92,33 @@ def merge(L1, L2, L3):
     
     if(L2):
         if(len(result) == 0):
-            mp = Struct.Merge_Product()
-            mp.name = product.name
-            mp.price = product.price
-            mp.product_URL.append(product.product_URL)
-            mp.figure_URL.append(product.figure_URL)
-            mp.review_score = product.review_score
-            mp.brand = product.brand
-            mp.source.append("Bloomindale")
-            mp.original_price.append(product.price)
-            result.append(mp);
+            for product in L2:
+                mp = Struct.Merge_Product()
+                mp.name = product.name
+                mp.price = product.price
+                mp.product_URL.append(product.product_URL)
+                mp.figure_URL.append(product.figure_URL)
+                mp.review_score = product.review_score
+                mp.brand = product.brand
+                mp.source.append("Bloomindale")
+                mp.original_price.append(product.price)
+                result.append(mp);
         else:
             product_merge(L2, result, "Bloomindale")
 
     if(L3):
         if(len(result) == 0):
-            mp = Struct.Merge_Product()
-            mp.name = product.name
-            mp.price = product.price
-            mp.product_URL.append(product.product_URL)
-            mp.figure_URL.append(product.figure_URL)
-            mp.review_score = product.review_score
-            mp.brand = product.brand
-            mp.source.append("UTLA")
-            mp.original_price.append(product.price)
-            result.append(mp);
+            for product in L3:
+                mp = Struct.Merge_Product()
+                mp.name = product.name
+                mp.price = product.price
+                mp.product_URL.append(product.product_URL)
+                mp.figure_URL.append(product.figure_URL)
+                mp.review_score = product.review_score
+                mp.brand = product.brand
+                mp.source.append("UTLA")
+                mp.original_price.append(product.price)
+                result.append(mp);
         else:
             product_merge(L3, result, "UTLA")
     return result
@@ -167,7 +170,13 @@ def get(key):
     t3.join()
     # both threads completely executed 
     #print "Done!"
-    return merge(L1[0],L2[0],L3[0])
+    R1 = []
+    R2 = []
+    R3 = []
+    if L1: R1 = L1[0]
+    if L2: R2 = L2[0]
+    if L3: R3 = L3[0]
+    return merge(R1,R2,R3)
 
 def deliver(key):
     global id, DB
@@ -190,37 +199,37 @@ def deliver(key):
         data['Product'].append(dic)
         DB[id] = dic
         id += 1
-
+    #data['Product'] = shuffle()
     #with open('data.txt', 'w') as outfile:
     #    json.dump(data, outfile)
     return data
 
 def comment_API1(L, URL):
     try:
-        print(URL)
+        print("Sephora: " + URL)
         tmp = Sephora.getProductReview(URL)
         L.append(tmp);
-        print("Success in Sephora")
+        print("comment Success in Sephora")
     except:
-        print("ERROR in Sephora")
+        print("comment ERROR in Sephora")
 
 def comment_API2(L, URL):
     try:
         print("Bloomindale: " + URL)
         tmp = Bloomindale.getProductReview(URL)
         L.append(tmp)
-        print("Success in Bloomindale")
+        print("comment Success in Bloomindale")
     except:
-        print("EROOR in Bloomindale")
+        print("comment EROOR in Bloomindale")
 
 def comment_API3(L, URL):
     try:
         print("UTLA: " + URL)
         tmp = UTLA.getProductReview(URL)
         L.append(tmp)
-        print("Success in UTLA")
+        print("comment Success in UTLA")
     except:
-        print("EROOR in UTLA")
+        print("comment EROOR in UTLA")
 
 def form_comment(dic, comments):
     for comment in comments:
@@ -245,12 +254,15 @@ def get_comment(dic):
         if(src == "Sephora"):
             t1 = threading.Thread(target=comment_API1, args=(L1,dic["product_URL"][i],))
             t1.start()
+            check1 = True
         elif(src == "Bloomindale"):
             t2 = threading.Thread(target=comment_API2, args=(L2,dic["product_URL"][i],)) 
             t2.start() 
+            check2 = True
         elif(src == "UTLA"):
             t3 = threading.Thread(target=comment_API3, args=(L3,dic["product_URL"][i],))
             t3.start() 
+            check3 = True
         i += 1
 
     if check1: 
@@ -276,14 +288,15 @@ def index():
 @app.route("/detail", methods=['POST'])
 def detail():
     global id, DB
-    id = int(request.form.get("ID"))
+    data = json.loads(request.data)
+    id = int(data['ID'])
     print(id)
     dic = DB[id];
     get_comment(dic);
     return jsonify(dic)
 
 if __name__ == "__main__":
-    # dic = deliver("SK2");
-    # get_comment(dic['Product'][3]);
+    #dic = deliver("SK2");
+    #get_comment(dic['Product'][3]);
     app.run()
     #print "done"
