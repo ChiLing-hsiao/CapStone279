@@ -303,6 +303,11 @@ def reformat(dic):
         new_dic["source"]["original_price"].append(dic["original_price"][i])
         new_dic["source"]["product_URL"].append(dic["product_URL"][i])
 
+    # for i in range(0, len(dic["content"])):
+    #     new_dic["comment"].append(Struct.Content(dic["content"][i], int(float(dic["score"][i])), dic["date"][i], dic["title"][i]))
+    # for i in range(0, len(dic["source"])):
+    #     new_dic["source"].append(Struct.Source(dic["source"][i], dic["original_price"][i], dic["product_URL"][i]))
+
     return new_dic
 
 app = Flask(__name__)
@@ -324,8 +329,8 @@ def detail():
     dic = DB[id]
     get_comment(dic)
     dic = reformat(dic)
-    with open('data.json', 'w') as outfile:
-        json.dump(dic, outfile)
+    # with open('data.json', 'w') as outfile:
+    #     json.dump(dic, outfile)
     return jsonify(dic)
 
 if __name__ == "__main__":
