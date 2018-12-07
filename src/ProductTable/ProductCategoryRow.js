@@ -36,7 +36,7 @@ export default class ProductCategoryRow extends Component {
                 <Card body style={{ borderColor: 'white' }} className="text-center">
                     <Link to={{ pathname: '/detail/' + this.props.product.id }} style={{ textDecoration: 'none', color: 'black' }}>
                         <CardImg className="img-fluid d-block mx-auto" style={{ width: '120px' }}
-                            src={this.props.product.figure_URL} />
+                            src={this.props.product.figure_URL[0]} />
                     </Link>
                     <CardBody>
                         <Link to={{ pathname: '/detail/' + this.props.product.id }} style={{ color: 'black' }}>
