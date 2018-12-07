@@ -57,7 +57,7 @@ def product_merge(L, result, source):
                 # print (product.name);
                 mp.price = min(mp.price, product.price)
                 mp.original_price.append(product.price)
-                mp.review_score = (mp.review_score*len(mp.product_URL) + product.review_score)/(len(mp.product_URL)+1)
+                mp.review_score = int((mp.review_score*len(mp.product_URL) + product.review_score)/(len(mp.product_URL)+1))
                 mp.product_URL.append(product.product_URL)
                 mp.figure_URL.append(product.figure_URL)
                 mp.source.append(source)
@@ -275,11 +275,42 @@ def get_comment(dic):
         t3.join()
         form_comment(dic, L3[0])
 
+def reformat(dic):
+    new_dic = {}
+    new_dic["brand"] = dic["brand"]
+    new_dic["id"] = dic["id"]
+    new_dic["price"] = dic["price"]
+    new_dic["review_score"] = dic["review_score"]
+    new_dic["figure_URL"] = dic["figure_URL"]
+    new_dic["comment"] = {}
+    new_dic["source"] = {}
+    new_dic["comment"]["content"] = []
+    new_dic["comment"]["score"] = []
+    new_dic["comment"]["date"] = []
+    new_dic["comment"]["title"] = []
+    new_dic["source"]["source"] = []
+    new_dic["source"]["original_price"] = []
+    new_dic["source"]["product_URL"] = []
+    new_dic["name"] = dic["name"]
+
+    for i in range(0, len(dic["content"])):
+        new_dic["comment"]["content"].append(dic["content"][i])
+        new_dic["comment"]["score"].append(int(float(dic["score"][i])))
+        new_dic["comment"]["date"].append(dic["date"][i])
+        new_dic["comment"]["title"].append(dic["title"][i])
+    for i in range(0, len(dic["source"])):
+        new_dic["source"]["source"].append(dic["source"][i])
+        new_dic["source"]["original_price"].append(dic["original_price"][i])
+        new_dic["source"]["product_URL"].append(dic["product_URL"][i])
+
+    return new_dic
+
 app = Flask(__name__)
 
 @app.route("/", methods=['POST'])
 def index():
-    key = request.form.get("KEY")
+    data = json.loads(request.data)
+    key = data['KEY']
     print(key)
     dic = deliver(key);
     return jsonify(dic)
@@ -287,14 +318,18 @@ def index():
 @app.route("/detail", methods=['POST'])
 def detail():
     global id, DB
-    id = int(request.form.get("ID"))
+    data = json.loads(request.data)
+    id = int(data['ID'])
     print(id)
-    dic = DB[id];
-    get_comment(dic);
+    dic = DB[id]
+    get_comment(dic)
+    dic = reformat(dic)
+    with open('data.json', 'w') as outfile:
+        json.dump(dic, outfile)
     return jsonify(dic)
 
 if __name__ == "__main__":
     #dic = deliver("SK2");
     #get_comment(dic['Product'][3]);
-    app.run(host='localhost',port=5000)
+    app.run()
     #print "done"
