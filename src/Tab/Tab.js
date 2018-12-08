@@ -40,8 +40,6 @@ export default class Example extends React.Component {
     }
 
     render() {
-        //
-
         let content = [];
         let sourceLen = this.props.product.source.source.length;
         for (let i = 0; i < sourceLen; i++) {

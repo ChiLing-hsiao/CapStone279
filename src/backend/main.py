@@ -70,7 +70,7 @@ def product_merge(L, result, source):
             mp.original_price.append(product.price)
             mp.product_URL.append(product.product_URL)
             mp.figure_URL.append(product.figure_URL)
-            mp.review_score = product.review_score
+            mp.review_score = int(product.review_score)
             mp.brand = product.brand
             mp.source.append(source)
             result.append(mp);
@@ -84,7 +84,7 @@ def merge(L1, L2, L3):
             mp.price = product.price
             mp.product_URL.append(product.product_URL)
             mp.figure_URL.append(product.figure_URL)
-            mp.review_score = product.review_score
+            mp.review_score = int(product.review_score)
             mp.brand = product.brand
             mp.source.append("Sephora")
             mp.original_price.append(product.price)
@@ -98,7 +98,7 @@ def merge(L1, L2, L3):
                 mp.price = product.price
                 mp.product_URL.append(product.product_URL)
                 mp.figure_URL.append(product.figure_URL)
-                mp.review_score = product.review_score
+                mp.review_score = int(product.review_score)
                 mp.brand = product.brand
                 mp.source.append("Bloomindale")
                 mp.original_price.append(product.price)
@@ -114,7 +114,7 @@ def merge(L1, L2, L3):
                 mp.price = product.price
                 mp.product_URL.append(product.product_URL)
                 mp.figure_URL.append(product.figure_URL)
-                mp.review_score = product.review_score
+                mp.review_score = int(product.review_score)
                 mp.brand = product.brand
                 mp.source.append("UTLA")
                 mp.original_price.append(product.price)
@@ -192,7 +192,7 @@ def deliver(key):
         dic["price"] = result[i].price
         dic["product_URL"] = result[i].product_URL
         dic["figure_URL"] = result[i].figure_URL
-        dic["review_score"] = result[i].review_score
+        dic["review_score"] = int(result[i].review_score)
         dic["brand"] = result[i].brand
         dic["source"] = result[i].source
         dic["original_price"] = result[i].original_price
@@ -280,7 +280,7 @@ def reformat(dic):
     new_dic["brand"] = dic["brand"]
     new_dic["id"] = dic["id"]
     new_dic["price"] = dic["price"]
-    new_dic["review_score"] = dic["review_score"]
+    new_dic["review_score"] = int(dic["review_score"])
     new_dic["figure_URL"] = dic["figure_URL"]
     new_dic["comment"] = {}
     new_dic["source"] = {}
@@ -292,6 +292,7 @@ def reformat(dic):
     new_dic["source"]["original_price"] = []
     new_dic["source"]["product_URL"] = []
     new_dic["name"] = dic["name"]
+    new_dic["mini_figure_URL"] = new_dic["figure_URL"][:]
 
     for i in range(0, len(dic["content"])):
         new_dic["comment"]["content"].append(dic["content"][i])

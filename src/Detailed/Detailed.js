@@ -22,6 +22,7 @@ class Detailed extends Component {
                         this.setState({loadedProduct: response.data});
                         console.log(this.props.match.params.id);
                         console.log(response.data);
+                        console.log(this.state.loadedProduct.mini_figure_URL.length);
                     });
             }
         }
@@ -34,6 +35,13 @@ class Detailed extends Component {
         //     post = <p style={{textAlign: 'center'}}>Loading...!</p>;
         // }
         if (this.state.loadedProduct) {
+            let mini_pic = [];
+            for(let i = 0; i < this.state.loadedProduct.mini_figure_URL.length; i++){
+                mini_pic.push(<li className="active"><a data-target={"#pic-" + (i + 1).toString()} data-toggle="tab"><img
+                    src={this.state.loadedProduct.mini_figure_URL[i]}/></a>
+                </li>
+                );
+            }
             post = (
                 <div>
                     <Card>
@@ -46,21 +54,7 @@ class Detailed extends Component {
                                         </div>
                                     </div>
                                     <ul className="preview-thumbnail nav nav-tabs">
-                                        <li className="active"><a data-target="#pic-1" data-toggle="tab"><img
-                                            src={this.state.loadedProduct.figure_URL}/></a>
-                                        </li>
-                                        <li><a data-target="#pic-2" data-toggle="tab"><img
-                                            src={this.state.loadedProduct.figure_URL}/></a>
-                                        </li>
-                                        <li><a data-target="#pic-3" data-toggle="tab"><img
-                                            src={this.state.loadedProduct.figure_URL}/></a>
-                                        </li>
-                                        <li><a data-target="#pic-4" data-toggle="tab"><img
-                                            src={this.state.loadedProduct.figure_URL}/></a>
-                                        </li>
-                                        <li><a data-target="#pic-5" data-toggle="tab"><img
-                                            src={this.state.loadedProduct.figure_URL}/></a>
-                                        </li>
+                                        {mini_pic}
                                     </ul>
                                 </Col>
                                 <Col className="details" md='6'>

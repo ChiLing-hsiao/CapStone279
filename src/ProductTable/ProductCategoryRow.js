@@ -28,11 +28,18 @@ export default class ProductCategoryRow extends Component {
         this.state = {}
     }
 
+    generate_star(num){
+        let res = [];
+        for(let i = 0; i < num; i++){
+            res.push(<FontAwesomeIcon icon={Icons.faStar} key={i}></FontAwesomeIcon>);
+        }
+        return res;
+    }
+
     render() {
         // alert(this.props.product.id);
         return (
             <Col sm="3" >
-
                 <Card body style={{ borderColor: 'white' }} className="text-center">
                     <Link to={{ pathname: '/detail/' + this.props.product.id }} style={{ textDecoration: 'none', color: 'black' }}>
                         <CardImg className="img-fluid d-block mx-auto" style={{ width: '120px' }}
@@ -52,8 +59,8 @@ export default class ProductCategoryRow extends Component {
                             <CardText style={{ height: '3px', fontSize: '10px' }}>
                                 {this.props.product.price}
                             </CardText>
-                            <CardText style={{ fontSize: '5px' }}>
-                                {this.props.product.review_score}<FontAwesomeIcon icon={Icons.faStar}></FontAwesomeIcon>
+                            <CardText style={{ fontSize: '10px' }}>
+                                {this.generate_star(this.props.product.review_score)}
                             </CardText>
                         </Link>
                     </CardBody>

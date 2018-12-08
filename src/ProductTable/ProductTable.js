@@ -145,35 +145,24 @@ class ProductTable extends Component {
     }
 
     render() {
-        if (!this.state.products) {
-            rows.push(<p style={{textAlign: 'center'}}>Loading...!</p>);
+        let res = <p style={{textAlign: 'center'}}>Loading...!</p>;
+        if (this.state.products) {
+            const products = this.state.products;
+            let rows = [];
+            let cnt = 0;
+            const N_ROW = 4;
+            products.forEach((product) => {
+                cnt = cnt + 1;
+                if ((cnt % 4) === 0) {
+                    rows.push(<ProductCategoryRow product={product} key={product.id}/>);
+                } else {
+                    rows.push(<ProductCategoryRow product={product} key={product.id}/>);
+                }
+            });
+            res = <div><Container><Row>{rows}</Row></Container></div>;
         }
-        const products = this.state.products;
-        let rows = [];
-        let cnt = 0;
-        const N_ROW = 4;
-        products.forEach((product) => {
-            cnt = cnt + 1;
-            if ((cnt % 4) === 0) {
-                rows.push(<ProductCategoryRow product={product} key={product.id}/>);
-            } else {
-                rows.push(<ProductCategoryRow product={product} key={product.id}/>);
-            }
-        });
-
-        // alert();
-
-        return (
-            <div>
-                <Container>
-                    <Row>
-                        {rows}
-                    </Row>
-                </Container>
-            </div>
-            
-        )
+        return res;
     }
-};
+}
 
 export default ProductTable;
