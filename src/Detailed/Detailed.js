@@ -9,7 +9,7 @@ import './Detailed.css'
 class Detailed extends Component {
     state = {
         loadedProduct: null,
-        selectedImage:''
+        selectedImage: ''
     };
 
     componentDidMount() {
@@ -21,11 +21,12 @@ class Detailed extends Component {
                     .then(response => {
                         this.setState({loadedProduct: response.data});
                         console.log(this.props.match.params.id);
+                        console.log(response.data);
                     });
             }
         }
     }
-   
+
 
     render() {
         let post = <p style={{textAlign: 'center'}}>Loading...!</p>;
@@ -46,7 +47,7 @@ class Detailed extends Component {
                                     </div>
                                     <ul className="preview-thumbnail nav nav-tabs">
                                         <li className="active"><a data-target="#pic-1" data-toggle="tab"><img
-                                        src={this.state.loadedProduct.figure_URL} /></a>
+                                            src={this.state.loadedProduct.figure_URL}/></a>
                                         </li>
                                         <li><a data-target="#pic-2" data-toggle="tab"><img
                                             src={this.state.loadedProduct.figure_URL}/></a>
@@ -67,13 +68,13 @@ class Detailed extends Component {
                                     <span className="product-name">{this.state.loadedProduct.name}</span>
                                     <p className="product-description">SIZE 9 x 0.05 oz/ 1.3 g</p>
                                     <h5 className="colors">Best Deal:
-                                        
+
                                     </h5>
                                 </Col>
                             </Row>
                         </Container>
                     </Card>
-                    <Tab></Tab>
+                    <Tab product={this.state.loadedProduct}></Tab>
                 </div>
             );
         }
