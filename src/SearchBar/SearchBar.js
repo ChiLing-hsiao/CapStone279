@@ -10,24 +10,42 @@ import Sidebar from "react-sidebar";
 
 class SearchBar extends Component {
     state = {
-        tmpKey: ""
+        tmpKey: "",
     };
-   
-    
+    constructor(props) {
+        super(props);
+        this.state = {
+            openBar: false,
+        };
+        this.setSidebar = this.setSidebar.bind(this);
+    }
+    setSidebar() {
+        console.log(this.state.openBar);
+        this.setState({ openBar: !this.state.openBar });
+        this.props.clicked()
+    }
+     
     render() {
+        
+        let but = <button id="sidebarCollapse" onClick={this.setSidebar}>
+            <span></span><span></span><span></span>
+        </button>
+        if (this.state.openBar) {
+            but = <button style={{background: 'black', border:'none'}} id="sidebarCollapse" onClick={this.setSidebar}>
+                <FontAwesomeIcon icon={Icons.faWindowClose} size="lg" color="white"></FontAwesomeIcon>
+            </button>
+        }
+        
         return (
             <Navbar className='topnav'>
-                <button id="sidebarCollapse" onClick={this.props.clicked}>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+
+                {but}
                 <Link to="/">
                     <button className="home">Home</button>
                 </Link>
                 <div className="side">
                     <div className="search-container">
-                    
+
                         <input type="text" placeholder="Search..." className="search"
                             onChange={(event) => this.setState({ tmpKey: event.target.value })} />
                         {/*<Link to={{ pathname : "/search" , state : { searchKey: this.state.tmpKey }}}>*/}

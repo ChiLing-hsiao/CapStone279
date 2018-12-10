@@ -1,10 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
-import {Container, Card, CardImg, CardTitle, CardSubtitle, CardText, CardBody, Row, Col} from 'reactstrap';
+import { Container, Card, CardImg, CardTitle, CardSubtitle, CardText, CardBody, Row, Col } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as Icons from "@fortawesome/free-solid-svg-icons"
 import Tab from '../Tab/Tab'
 import './Detailed.css'
-
+import logo from './gif-maker.gif'
 
 class Detailed extends Component {
     state = {
@@ -19,26 +21,36 @@ class Detailed extends Component {
                 params.append("ID", this.props.match.params.id);
                 axios.post('http://localhost:5000/detail', params)
                     .then(response => {
-                        this.setState({loadedProduct: response.data});
-                        console.log(this.props.match.params.id);
-                        console.log(response.data);
-                        console.log(this.state.loadedProduct.mini_figure_URL.length);
+                        this.setState({ loadedProduct: response.data });
+                        this.setState({ selectedImage: this.state.loadedProduct.mini_figure_URL[0] });
                     });
             }
         }
     }
-
+    myColor(position){
+        if (this.state.selectedImage === this.state.loadedProduct.mini_figure_URL[position]) {
+          return "black";
+        }
+        return "white";
+      }
+    
+    SelectImage(Url) {
+        console.log(Url)
+        this.setState({ selectedImage: Url });
+    }
 
     render() {
-        let post = <p style={{textAlign: 'center'}}>Loading...!</p>;
-        // if (!this.props.match.params.id) {
-        //     post = <p style={{textAlign: 'center'}}>Loading...!</p>;
-        // }
+        let post = <p style={{ textAlign: 'center', fontSize: '50px', fontFamily: 'Georgia' }}>
+        <img src={logo} alt="loading..." /> </p>;
+        let previewSrc = <CardImg  style={{ height: '150px' }} src={this.state.selectedImage} />
         if (this.state.loadedProduct) {
             let mini_pic = [];
-            for(let i = 0; i < this.state.loadedProduct.mini_figure_URL.length; i++){
-                mini_pic.push(<li className="active"><a data-target={"#pic-" + (i + 1).toString()} data-toggle="tab"><img
-                    src={this.state.loadedProduct.mini_figure_URL[i]}/></a>
+            for (let i = 0; i < this.state.loadedProduct.mini_figure_URL.length; i++) {
+                mini_pic.push(<li><Card style={{borderColor: this.myColor(i), cursor:'pointer'}} 
+                onClick={() => this.SelectImage(this.state.loadedProduct.mini_figure_URL[i])} >
+                <a data-toggle="tab"><CardImg style={{ height: '66px'}}
+                    src={this.state.loadedProduct.mini_figure_URL[i]} /></a>
+                     </Card>
                 </li>
                 );
             }
@@ -46,23 +58,25 @@ class Detailed extends Component {
                 <div>
                     <Card>
                         <Container fluid>
-                            <Row className='wrapper'>
-                                <Col className="preview" md='4'>
-                                    <div className="preview-pic tab-content">
-                                        <div className="tab-pane active" id="pic-1">
-                                            <img src={this.state.loadedProduct.figure_URL}/>
-                                        </div>
-                                    </div>
+                            <Row>
+                                <Col md='4'>
+
+                                    <Card style={{ borderColor: 'white' }}>
+                                        {previewSrc}
+                                    </Card>
+
+                                    
                                     <ul className="preview-thumbnail nav nav-tabs">
                                         {mini_pic}
                                     </ul>
+                                    
+                                    
                                 </Col>
                                 <Col className="details" md='6'>
                                     <h3 className="product-brand">{this.state.loadedProduct.brand}</h3>
                                     <span className="product-name">{this.state.loadedProduct.name}</span>
-                                    <p className="product-description">SIZE 9 x 0.05 oz/ 1.3 g</p>
-                                    <h5 className="colors">Best Deal:
-
+                                    <h5>Best Deal:
+                                        $ {this.state.loadedProduct.price}
                                     </h5>
                                 </Col>
                             </Row>

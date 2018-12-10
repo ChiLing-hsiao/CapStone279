@@ -46,12 +46,12 @@ export default class Example extends React.Component {
             content.push(
                 <div key={i}>
                     <Row>
-                        <Col sm='3'>{i + 1}</Col>
+                        <Col sm='2'>{i + 1}</Col>
                         <Col sm='3'>{this.props.product.source.source[i]}</Col>
                         <Col sm='3'>${this.props.product.source.original_price[i]}</Col>
                         <Col sm='3'>
                             <a href={this.props.product.source.product_URL[i]} target="_blank">
-                                <button>Buy <FontAwesomeIcon icon={Icons.faHandPointRight}></FontAwesomeIcon></button>
+                                <button style={{ cursor: 'pointer'}}>Buy <FontAwesomeIcon icon={Icons.faHandPointRight}></FontAwesomeIcon></button>
                             </a>
                         </Col>
                     </Row>
@@ -74,8 +74,7 @@ export default class Example extends React.Component {
                 <div key={i}>
                     <Row>
                         <Col sm='3'>
-                            <div className="review-block-source">Source:<a
-                                href="#">{this.props.product.comment.date[i]}</a></div>
+                            <div style={{fontFamily:'Rome'}}className="review-block-source">Date: {this.props.product.comment.date[i]}</div>
                         </Col>
                         <Col sm='9'>
                             <div className="review-block-rate">
@@ -91,8 +90,8 @@ export default class Example extends React.Component {
         }
         return (
             <div>
-                <Nav tabs>
-                    <NavItem>
+                <Nav tabs style={{marginLeft:'85px'}}>
+                    <NavItem style={{cursor:'pointer'}}>
                         <NavLink
                             className={classnames({active: this.state.activeTab === '1'})}
                             onClick={() => {
@@ -102,7 +101,7 @@ export default class Example extends React.Component {
                             Stores Information
                         </NavLink>
                     </NavItem>
-                    <NavItem>
+                    <NavItem style={{cursor:'pointer'}}>
                         <NavLink
                             className={classnames({active: this.state.activeTab === '2'})}
                             onClick={() => {
@@ -118,7 +117,7 @@ export default class Example extends React.Component {
                         <Container>
                             <div className="review-block" key={1}>
                                 <Row>
-                                    <Col sm='3'>#</Col>
+                                    <Col sm='2'>#</Col>
                                     <Col sm='3'>Website </Col>
                                     <Col sm='3'>Price</Col>
                                     <Col sm='3'>Link</Col>

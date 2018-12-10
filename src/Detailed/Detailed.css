@@ -5,8 +5,34 @@ body {
   img {
     max-width: 50%;
    }
-  
-  .preview {
+  .preview{
+    display: block;
+  }
+  .preview-thumbnail.nav-tabs {
+    border: none;
+    margin-top: 15px; }
+    .preview-thumbnail.nav-tabs li {
+      width: 30%;
+      margin-right: 2.5%; }
+      .preview-thumbnail.nav-tabs li img {
+        
+        max-width: 100%;
+        display: block; 
+        cursor: pointer;
+    }
+    .mini{
+      border-color: white;
+    }
+    .mini:active{
+      border-color: black;
+    }
+      .preview-thumbnail.nav-tabs li a {
+        padding: 0;
+        margin: 0; }
+      .preview-thumbnail.nav-tabs li:last-of-type {
+        margin-right: 0; }
+        
+  /*.preview {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -48,7 +74,7 @@ body {
       -webkit-animation-name: opacity;
               animation-name: opacity;
       -webkit-animation-duration: .3s;
-              animation-duration: .3s; }
+              animation-duration: .3s; }*/
   
   .card {
     background:white;
@@ -97,27 +123,7 @@ body {
   .product-brand {
     margin-top: 0; 
     margin-bottom: 5px;}
-  
-  
-  .color {
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 10px;
-    height: 2em;
-    width: 2em;
-    border-radius: 2px; }
-    .color:first-of-type {
-      margin-left: 20px; }
-    
 
-  .orange {
-    background: #ff9f1a; }
-  
-  .green {
-    background: #85ad00; }
-  
-  .blue {
-    background: #0076ad; }
   
   .tooltip-inner {
     padding: 1.3em; }

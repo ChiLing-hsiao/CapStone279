@@ -169,7 +169,7 @@ def getProductInfo(keyword):
         if '-' in price:
             price = price[0:price.find('-')-1]
         price = price[price.find('$') + 1:]
-        product = Struct.Product(productsBrands[i].decode('utf-8'), productsNames[i].decode('utf-8'), float(price), baseUrl + productsUrls[i], baseUrl + imageUrls[i].decode('utf-8'), float(productsRatings[i]));
+        product = Struct.Product(productsBrands[i].decode('utf-8'), productsNames[i].decode('utf-8'), float(price), baseUrl + productsUrls[i], imageUrls[i].decode('utf-8'), float(productsRatings[i]));
         # print 'Brand:' + productsBrands[i];
         # print 'Product Name:' + productsNames[i];
         # print 'Product Url:' + productsUrls[i];

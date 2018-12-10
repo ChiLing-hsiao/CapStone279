@@ -36,10 +36,10 @@ def getProductReview(searchUrl):
     driver.get(searchUrl);
     time.sleep(0.5)   # Delays for 0.5 seconds.
 
-    # Move five times can scroll to the end (the height of the website is 4284px)
-    for i in range(5):
-        driver.execute_script("window.scrollBy(0,1000)");
-        time.sleep(0.3);
+    # Move ten times can scroll to the end (the height of the website is 4284px)
+    for i in range(10):
+        driver.execute_script("window.scrollBy(0,500)");
+        time.sleep(0.2);
     html = driver.page_source;
     soup = BeautifulSoup(html.encode('utf-8'), 'html.parser')
 
@@ -107,10 +107,10 @@ def getProductInfo(keyword):
     driver.get(searchUrl);
     time.sleep(0.5)   # Delays for 0.5 seconds.
 
-    # Move five times can scroll to the end (the height of the website is 4284px)
-    for i in range(5):
-        driver.execute_script("window.scrollBy(0,1000)");
-        time.sleep(0.3);
+    # Move ten times can scroll to the end (the height of the website is 4284px)
+    for i in range(10):
+        driver.execute_script("window.scrollBy(0,500)");
+        time.sleep(0.2);
     html = driver.page_source;
 
     # from bs4 import BeautifulSoup

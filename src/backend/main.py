@@ -9,6 +9,7 @@ import threading
 import copy
 from flask import Flask, jsonify, request, json
 from random import shuffle
+from pathlib import Path
 
 id = 0
 DB = {}
@@ -292,7 +293,7 @@ def reformat(dic):
     new_dic["source"]["original_price"] = []
     new_dic["source"]["product_URL"] = []
     new_dic["name"] = dic["name"]
-    new_dic["mini_figure_URL"] = new_dic["figure_URL"][:]
+    new_dic["mini_figure_URL"] = new_dic["figure_URL"]
 
     for i in range(0, len(dic["content"])):
         new_dic["comment"]["content"].append(dic["content"][i])
@@ -310,29 +311,75 @@ def reformat(dic):
     #     new_dic["source"].append(Struct.Source(dic["source"][i], dic["original_price"][i], dic["product_URL"][i]))
 
     return new_dic
+# def form_key(keys):
+#     ID = []
+#     for key in keys:
+#         dic = deliver(key)
+#         for product in dic["Product"]:
+#             ID.append(product["id"])
+#         dist = "cache/key_" + key + ".json"
+#         with open(dist, 'w') as outfile:
+#             json.dump(dic, outfile)
+#     return ID
+
+# def form_detail(IDs):
+#     i = 0
+#     for ele in IDs:
+#         if i == 16:
+#             break
+#         print (ele)
+#         dic = DB[ele]
+#         get_comment(dic)
+#         dic = reformat(dic)
+#         dist = "cache/ID_" + str(ele) + ".json"
+#         with open(dist, 'w') as outfile:
+#             json.dump(dic, outfile)
+#         i += 1
 
 app = Flask(__name__)
-
 
 @app.route("/", methods=['POST'])
 def index():
     key = request.form.get("KEY")
-    print(key)
-    dic = deliver(key);
-    return jsonify(dic)
+    print (key)
+    my_file = Path("cache/key_" + key + ".json")
+    if my_file.is_file():
+        #read the json file and return the json package
+        with open("cache/key_" + key + ".json", "r", encoding="utf-8") as json_data:
+            d = json.load(json_data)
+            return jsonify(d)
+    else:
+        dic = deliver(key);
+        dist = "cache/key_" + key + ".json"
+        with open(dist, 'w', encoding='utf-8') as outfile:
+            json.dump(dic, outfile)
+        return jsonify(dic)
 
 @app.route("/detail", methods=['POST'])
 def detail():
-    global id, DB
+    global DB
     id = int(request.form.get("ID"))
     print(id)
-    dic = DB[id];
-    get_comment(dic);
-    dic = reformat(dic)
-    return jsonify(dic)
+    my_file = Path("cache/ID_" + str(id) + ".json")
+    if my_file.is_file():
+        #read the json file and return the json package
+        with open("cache/ID_" + str(id) + ".json", "r", encoding="utf-8") as json_data:
+            d = json.load(json_data)
+            return jsonify(d)
+    else:
+        dic = DB[id]
+        get_comment(dic)
+        dic = reformat(dic)
+        dist = "cache/ID_" + str(id) + ".json"
+        with open(dist, 'w', encoding="utf-8") as outfile:
+            json.dump(dic, outfile)
+        return jsonify(dic)
 
 if __name__ == "__main__":
     #dic = deliver("SK2");
     #get_comment(dic['Product'][3]);
+    # keys = ["foundation", "Lipstick"]
+    # ids = form_key(keys)
+    # form_detail(ids)
     app.run(host='localhost',port=5000)
     #print "done"

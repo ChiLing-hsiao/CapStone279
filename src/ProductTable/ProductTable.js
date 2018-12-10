@@ -133,7 +133,7 @@ class ProductTable extends Component {
         axios.post('http://localhost:5000/', params)
             .then(response => {
                 console.log(response);
-                const products = response.data["Product"].slice(0, 32).map(product => {
+                const products = response.data["Product"].map(product => {
                     return {
                         ...product,
                         author: 'Bicheng'

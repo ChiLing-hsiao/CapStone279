@@ -94,6 +94,7 @@ body {
   height: 40px;
   background: #eee;
   outline: 0;
+  cursor: pointer;
 }
 
 #sidebarCollapse span {

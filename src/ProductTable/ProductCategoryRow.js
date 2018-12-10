@@ -57,7 +57,7 @@ export default class ProductCategoryRow extends Component {
                         </Link>
                         <Link to={{ pathname: '/detail/' + this.props.product.id }} style={{ textDecoration: 'none', color: 'black' }}>
                             <CardText style={{ height: '3px', fontSize: '10px' }}>
-                                {this.props.product.price}
+                                $ {this.props.product.price}
                             </CardText>
                             <CardText style={{ fontSize: '10px' }}>
                                 {this.generate_star(this.props.product.review_score)}
