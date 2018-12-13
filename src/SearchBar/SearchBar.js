@@ -43,11 +43,12 @@ class SearchBar extends Component {
                 <Link to="/">
                     <button className="home">Home</button>
                 </Link>
+                <h3 style={{textAlign: 'center', color:'white', fontFamily:'Tahoma'}}>Find Your Beauty</h3>
                 <div className="side">
                     <div className="search-container">
 
                         <input type="text" placeholder="Search..." className="search"
-                            onChange={(event) => this.setState({ tmpKey: event.target.value })} />
+                            onChange={(event) => this.setState({ tmpKey: event.target.value })}  />
                         {/*<Link to={{ pathname : "/search" , state : { searchKey: this.state.tmpKey }}}>*/}
                         <Link to={`/search/${this.state.tmpKey}`}>
                             <button><FontAwesomeIcon icon={Icons.faSearchPlus} size="lg" color="white" /></button>

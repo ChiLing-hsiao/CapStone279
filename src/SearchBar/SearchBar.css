@@ -36,8 +36,9 @@ body {
 .topnav input[type=text] {
   padding: 6px;
   margin-top: 8px;
-  font-size: 17px;
+  font-size: 14px;
   border: none;
+  width: 250px;
 }
 
 .topnav .search-container button {

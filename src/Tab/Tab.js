@@ -46,7 +46,7 @@ export default class Example extends React.Component {
             content.push(
                 <div key={i}>
                     <Row>
-                        <Col sm='2'>{i + 1}</Col>
+                        <Col style={{fontWeight:'bold', fontSize:'20px'}}  sm='2'>{i + 1}</Col>
                         <Col sm='3'>{this.props.product.source.source[i]}</Col>
                         <Col sm='3'>${this.props.product.source.original_price[i]}</Col>
                         <Col sm='3'>
@@ -98,7 +98,7 @@ export default class Example extends React.Component {
                                 this.toggle('1');
                             }}
                         >
-                            Stores Information
+                          <p style={{fontWeight:'bold', fontSize:'15px'}}>  Stores Information</p>
                         </NavLink>
                     </NavItem>
                     <NavItem style={{cursor:'pointer'}}>
@@ -108,7 +108,7 @@ export default class Example extends React.Component {
                                 this.toggle('2');
                             }}
                         >
-                            Comments
+                           <p style={{fontWeight:'bold', fontSize:'15px'}}> Comments</p>
                         </NavLink>
                     </NavItem>
                 </Nav>
@@ -117,10 +117,10 @@ export default class Example extends React.Component {
                         <Container>
                             <div className="review-block" key={1}>
                                 <Row>
-                                    <Col sm='2'>#</Col>
-                                    <Col sm='3'>Website </Col>
-                                    <Col sm='3'>Price</Col>
-                                    <Col sm='3'>Link</Col>
+                                    <Col style={{fontWeight:'bold', fontSize:'20px'}} sm='2'>#</Col>
+                                    <Col style={{fontWeight:'bold', fontSize:'20px'}} sm='3'>Website </Col>
+                                    <Col style={{fontWeight:'bold', fontSize:'20px'}} sm='3'>Price</Col>
+                                    <Col style={{fontWeight:'bold', fontSize:'20px'}} sm='3'>Link</Col>
                                 </Row>
                                 <hr/>
                                 {content}
