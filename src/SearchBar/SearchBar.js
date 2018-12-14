@@ -24,6 +24,15 @@ class SearchBar extends Component {
         this.setState({ openBar: !this.state.openBar });
         this.props.clicked()
     }
+    handleSubmit(e) {
+        if (e.key === 'Enter') {
+            // TODO redirect user to '/movie'
+            
+            console.log(e.target.value);
+           return <Link to={`/search/${e.target.value}`}/>
+        }
+        
+    }
      
     render() {
         
@@ -35,7 +44,7 @@ class SearchBar extends Component {
                 <FontAwesomeIcon icon={Icons.faWindowClose} size="lg" color="white"></FontAwesomeIcon>
             </button>
         }
-        
+       
         return (
             <Navbar className='topnav'>
 
@@ -48,8 +57,8 @@ class SearchBar extends Component {
                     <div className="search-container">
 
                         <input type="text" placeholder="Search..." className="search"
-                            onChange={(event) => this.setState({ tmpKey: event.target.value })}  />
-                        {/*<Link to={{ pathname : "/search" , state : { searchKey: this.state.tmpKey }}}>*/}
+                            onChange={(event) => this.setState({ tmpKey: event.target.value })} onKeyPress={this.handleSubmit}  />
+                        
                         <Link to={`/search/${this.state.tmpKey}`}>
                             <button><FontAwesomeIcon icon={Icons.faSearchPlus} size="lg" color="white" /></button>
                         </Link>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import {
@@ -106,7 +106,8 @@ class ProductTable extends Component {
 
     state = {
         keyword: "",
-        products: []
+        products: [],
+        error: false
     };
 
     componentDidMount() {
@@ -123,10 +124,10 @@ class ProductTable extends Component {
     }
 
     updateProduct() {
-        let data = {KEY: "foundation"};
+        let data = { KEY: "foundation" };
         if (this.props.match.params && this.props.match.params.tmpKey) {
             data.KEY = this.props.match.params.tmpKey;
-            this.setState({keyword: this.props.match.params.tmpKey});
+            this.setState({ keyword: this.props.match.params.tmpKey });
         }
         const params = new URLSearchParams();
         params.append("KEY", data.KEY);
@@ -139,24 +140,32 @@ class ProductTable extends Component {
                         author: 'Bicheng'
                     }
                 });
-                this.setState({products: products});
+                this.setState({ products: products });
+            })
+            .catch(error => {
+                // console.log(error);
+                this.setState({error: true});
             });
         // }
     }
 
     render() {
-        let res = <p style={{textAlign: 'center'}}>Loading...!</p>;
+        let res = <p style={{ textAlign: 'center' }}>Loading...!</p>;
         if (this.state.products) {
             const products = this.state.products;
+            console.log(products);
+            if(this.state.error){
+                return <h1 style={{textAlign: 'center', color:'black', fontFamily:'Tahoma', marginTop:'200px'}}>No results</h1>
+            }
             let rows = [];
             let cnt = 0;
             const N_ROW = 4;
             products.forEach((product) => {
                 cnt = cnt + 1;
                 if ((cnt % 4) === 0) {
-                    rows.push(<ProductCategoryRow product={product} key={product.id}/>);
+                    rows.push(<ProductCategoryRow product={product} key={product.id} />);
                 } else {
-                    rows.push(<ProductCategoryRow product={product} key={product.id}/>);
+                    rows.push(<ProductCategoryRow product={product} key={product.id} />);
                 }
             });
             res = <div><Container><Row>{rows}</Row></Container></div>;

@@ -11,7 +11,7 @@ from flask import Flask, jsonify, request, json
 from random import shuffle
 from pathlib import Path
 
-id = 0
+id = 5000
 DB = {}
 
 def name_check(A, B):
